@@ -1,0 +1,26 @@
+//变量声明
+int integer_val;
+bool bool_val;
+double double_val;
+//数组声明
+int integerArray[4];
+bool boolArray[4];
+double doubleArray[4];
+/*多行注释
+   if、while、read、write语句
+*/
+read(integer_val,bool_val,double_val);
+if(integer_val <> 0) {
+    integer_val = 4;
+    write(integer_val);
+}
+while(bool_val ==true) {
+    write(double_val);
+}
+//运算符
+integer_val = a + b - c * d / e;
+//非法标识符
+int _wrong,6wrong;
+//非法整数、实数
+int a = 009;
+double b = 00.009;
