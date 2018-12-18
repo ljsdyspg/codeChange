@@ -26,19 +26,12 @@ public class run {
     public static void main(String[] args) throws IOException {
         lexer.execute(getFile("test2.cmm"));
         parser = new CMMParser(lexer.getTokens());
-        parser.setIndex(0);
-        parser.setErrorInfo("");
-        parser.setErrorNum(0);
-        TreeNode root = parser.execute();
-        System.out.println(parser.getErrorInfo());
+        parser.execute();
 
-        System.out.print(root.getChildCount()+" ");
-        System.out.println(root.getContent());
-        show(root);
+        cmmSemanticAnalysis = new CMMSemanticAnalysis(parser.getRoot());
+        cmmSemanticAnalysis.run();
 
-        cmmSemanticAnalysis = new CMMSemanticAnalysis(root);
-        cmmSemanticAnalysis.start();
-
+        System.out.println(cmmSemanticAnalysis.getResult().toString());
     }
 
     public static void show(TreeNode temp){

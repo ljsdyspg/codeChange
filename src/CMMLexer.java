@@ -23,6 +23,12 @@ public class CMMLexer {
     private ArrayList<String> errorList = new ArrayList<>();
     // 读取CMM文件文本
     private BufferedReader reader;
+    // 词法分析的结果
+    private StringBuilder result = new StringBuilder();
+
+    public StringBuilder getResult() {
+        return result;
+    }
 
     public boolean isNotation() {
         return isNotation;
@@ -133,6 +139,7 @@ public class CMMLexer {
         String content = "第" + lineNum + "行： " + cmmText;
         //TreeNode node = new TreeNode(content);
         System.out.println(content);
+        result.append(content+"\n");
         // 词法分析每行结束的标志
         cmmText += "\n";
         int length = cmmText.length();
@@ -164,6 +171,7 @@ public class CMMLexer {
                                 state = 0;
                                 //node.add(new TreeNode("分隔符 ： " + ch));
                                 System.out.println("\t"+"分隔符 ： " + ch);
+                                result.append("分隔符 ： " + ch +"\n");
                                 tokens.add(new Token(lineNum, i + 1, "分隔符", String.valueOf(ch)));
                                 displayTokens.add(new Token(lineNum, i + 1, "分隔符", String.valueOf(ch)));
                             }
@@ -204,6 +212,7 @@ public class CMMLexer {
                                 state = 10;
                                 //node.add(new TreeNode("分隔符 ： " + ch));
                                 System.out.println("\t"+"分隔符 ： " + ch);
+                                result.append("分隔符 ： " + ch+"\n");
                                 tokens.add(new Token(lineNum, begin, "分隔符",
                                         Token.DQ));
                                 displayTokens.add(new Token(lineNum, begin, "分隔符",
@@ -237,6 +246,7 @@ public class CMMLexer {
                         case 1:
                             //node.add(new TreeNode("运算符 ： " + Token.PLUS));
                             System.out.println("\t"+"运算符 ： " + Token.PLUS);
+                            result.append("运算符 ： " + Token.PLUS+"\n");
                             tokens.add(new Token(lineNum, i, "运算符", Token.PLUS));
                             displayTokens.add(new Token(lineNum, i, "运算符",
                                     Token.PLUS));
@@ -250,7 +260,8 @@ public class CMMLexer {
                                     || temp.equals("实数") || c.equals(")")
                                     || c.equals("]")) {
                                 //node.add(new TreeNode("运算符 ： " + Token.MINUS));
-                                System.out.println("\t"+"运算符 ： " + Token.MINUS);
+                                System.out.println("\t"+"运算符 ： " + Token.PLUS);
+                                result.append("运算符 ： " + Token.PLUS+"\n");
                                 tokens.add(new Token(lineNum, i, "运算符",
                                         Token.MINUS));
                                 displayTokens.add(new Token(lineNum, i, "运算符",
@@ -272,12 +283,14 @@ public class CMMLexer {
                                         + "\"使用错误  \n";
                                 //node.add(new TreeNode(Token.ERROR + "运算符\"" + Token.TIMES + "\"使用错误"));
                                 System.out.println(Token.ERROR + "运算符\"" + Token.TIMES + "\"使用错误");
+                                result.append(Token.ERROR + "运算符\"" + Token.TIMES + "\"使用错误"+"\n");
                                 errorList.add(errorInfo);
                                 displayTokens.add(new Token(lineNum, i, "错误",
                                         cmmText.substring(i - 1, i + 1)));
                             } else {
                                 //node.add(new TreeNode("运算符 ： " + Token.TIMES));
                                 System.out.println("\t"+"运算符 ： " + Token.TIMES);
+                                result.append("运算符 ： " + Token.TIMES+"\n");
                                 tokens.add(new Token(lineNum, i, "运算符",
                                         Token.TIMES));
                                 displayTokens.add(new Token(lineNum, i, "运算符",
@@ -290,6 +303,7 @@ public class CMMLexer {
                             if (ch == '/') {
                                 //node.add(new TreeNode("单行注释 //"));
                                 System.out.println("\t"+"单行注释 //");
+                                result.append("单行注释 //" + "\n");
                                 displayTokens.add(new Token(lineNum, i, "单行注释符号",
                                         "//"));
                                 begin = i + 1;
@@ -300,6 +314,7 @@ public class CMMLexer {
                             } else if (ch == '*') {
                                 //node.add(new TreeNode("多行注释 /*"));
                                 System.out.println("\t"+"多行注释 /*");
+                                result.append("多行注释 /*" + "\n");
                                 displayTokens.add(new Token(lineNum, i, "多行注释开始符号",
                                         "/*"));
                                 begin = i + 1;
@@ -307,6 +322,7 @@ public class CMMLexer {
                             } else {
                                 //node.add(new TreeNode("运算符 ： " + Token.DIVIDE));
                                 System.out.println("\t"+"运算符 ： " + Token.DIVIDE);
+                                result.append("运算符 ： " + Token.DIVIDE + "\n");
                                 tokens.add(new Token(lineNum, i, "运算符",
                                         Token.DIVIDE));
                                 displayTokens.add(new Token(lineNum, i, "运算符",
@@ -319,6 +335,7 @@ public class CMMLexer {
                             if (ch == '=') {
                                 //node.add(new TreeNode("运算符 ： " + Token.EQUAL));
                                 System.out.println("\t"+"运算符 ： " + Token.EQUAL);
+                                result.append("运算符 ： " + Token.EQUAL + "\n");
                                 tokens.add(new Token(lineNum, i, "运算符",
                                         Token.EQUAL));
                                 displayTokens.add(new Token(lineNum, i, "运算符",
@@ -328,6 +345,7 @@ public class CMMLexer {
                                 state = 0;
                                 //node.add(new TreeNode("运算符 ： " + Token.ASSIGN));
                                 System.out.println("\t"+"运算符 ： " + Token.ASSIGN);
+                                result.append("运算符 ： " + Token.ASSIGN + "\n");
                                 tokens.add(new Token(lineNum, i, "运算符",
                                         Token.ASSIGN));
                                 displayTokens.add(new Token(lineNum, i, "运算符",
@@ -338,21 +356,18 @@ public class CMMLexer {
                         case 6:
                             if (ch == '>') {
                                 //node.add(new TreeNode("运算符 ： " + Token.NEQUAL));
-                                System.out.println("\t"+"运算符 ： " + Token.NEQUAL);
-                                tokens.add(new Token(lineNum, i, "运算符",
-                                        Token.NEQUAL));
-                                displayTokens.add(new Token(lineNum, i, "运算符",
-                                        Token.NEQUAL));
+                                System.out.println("\t"+"运算符 ： " + Token.ASSIGN);
+                                result.append("运算符 ： " + Token.ASSIGN + "\n");
+                                tokens.add(new Token(lineNum, i, "运算符", Token.NEQUAL));
+                                displayTokens.add(new Token(lineNum, i, "运算符", Token.NEQUAL));
                                 state = 0;
                             } else {
                                 state = 0;
                                 //node.add(new TreeNode("运算符 ： " + Token.LT));
                                 System.out.println("\t"+"运算符 ： " + Token.LT);
-                                tokens
-                                        .add(new Token(lineNum, i, "运算符",
-                                                Token.LT));
-                                displayTokens.add(new Token(lineNum, i, "运算符",
-                                        Token.LT));
+                                result.append("运算符 ： " + Token.LT + "\n");
+                                tokens.add(new Token(lineNum, i, "运算符", Token.LT));
+                                displayTokens.add(new Token(lineNum, i, "运算符", Token.LT));
                                 i--;
                             }
                             break;
@@ -365,25 +380,22 @@ public class CMMLexer {
                                 if (isKey(id)) {
                                     //node.add(new TreeNode("关键字 ： " + id));
                                     System.out.println("\t"+"关键字 ： " + id);
-                                    tokens.add(new Token(lineNum, begin + 1, "关键字",
-                                            id));
-                                    displayTokens.add(new Token(lineNum, begin + 1,
-                                            "关键字", id));
+                                    result.append("关键字 ： " + id + "\n");
+                                    tokens.add(new Token(lineNum, begin + 1, "关键字", id));
+                                    displayTokens.add(new Token(lineNum, begin + 1, "关键字", id));
                                 } else if (matchID(id)) {
                                     //node.add(new TreeNode("标识符 ： " + id));
                                     System.out.println("\t"+"标识符 ： " + id);
-                                    tokens.add(new Token(lineNum, begin + 1, "标识符",
-                                            id));
-                                    displayTokens.add(new Token(lineNum, begin + 1,
-                                            "标识符", id));
+                                    result.append("标识符 ： " + id + "\n");
+                                    tokens.add(new Token(lineNum, begin + 1, "标识符", id));
+                                    displayTokens.add(new Token(lineNum, begin + 1, "标识符", id));
                                 } else {
-                                    errorInfo = "ERROR: " + lineNum + "行, "
-                                            + (begin + 1) + "列：" + id + "是非法标识符\n";
+                                    errorInfo = "ERROR: " + lineNum + "行, " + (begin + 1) + "列：" + id + "是非法标识符\n";
                                     //node.add(new TreeNode(Token.ERROR + id + "是非法标识符"));
                                     System.out.println(Token.ERROR + id + "是非法标识符");
+                                    result.append(Token.ERROR + id + "是非法标识符" + "\n");
                                     errorList.add(errorInfo);
-                                    displayTokens.add(new Token(lineNum, begin + 1,
-                                            "错误", id));
+                                    displayTokens.add(new Token(lineNum, begin + 1, "错误", id));
                                 }
                                 i--;
                                 state = 0;
@@ -398,6 +410,7 @@ public class CMMLexer {
                                             + i + "列：" + "数字格式错误或者标志符错误\n";
                                     //node.add(new TreeNode(Token.ERROR + "数字格式错误或者标志符错误"));
                                     System.out.println(Token.ERROR + "数字格式错误或者标志符错误");
+                                    result.append(Token.ERROR + "数字格式错误或者标志符错误" + "\n");
                                     errorList.add(errorInfo);
                                     displayTokens.add(new Token(lineNum, i, "错误",
                                             cmmText.substring(begin, find(begin,
@@ -410,6 +423,7 @@ public class CMMLexer {
                                         if (matchInteger(id)) {
                                             //node.add(new TreeNode("整数    ： " + id));
                                             System.out.println("\t"+"整数    ： " + id);
+                                            result.append("整数    ： " + id + "\n");
                                             tokens.add(new Token(lineNum,
                                                     begin + 1, "整数", id));
                                             displayTokens.add(new Token(lineNum,
@@ -420,6 +434,7 @@ public class CMMLexer {
                                                     + id + "是非法整数\n";
                                             //node.add(new TreeNode(Token.ERROR + id + "是非法整数"));
                                             System.out.println(Token.ERROR + id + "是非法整数");
+                                            result.append(Token.ERROR + id + "是非法整数" + "\n");
                                             errorList.add(errorInfo);
                                             displayTokens.add(new Token(lineNum,
                                                     begin + 1, "错误", id));
@@ -428,6 +443,7 @@ public class CMMLexer {
                                         if (matchDouble(id)) {
                                             //node.add(new TreeNode("实数    ： " + id));
                                             System.out.println("\t"+"实数    ： " + id);
+                                            result.append("实数    ： " + id + "\n");
                                             tokens.add(new Token(lineNum,
                                                     begin + 1, "实数", id));
                                             displayTokens.add(new Token(lineNum,
@@ -438,6 +454,7 @@ public class CMMLexer {
                                                     + id + "是非法实数\n";
                                             //node.add(new TreeNode(Token.ERROR + id + "是非法实数"));
                                             System.out.println(Token.ERROR + id + "是非法实数");
+                                            result.append(Token.ERROR + id + "是非法实数" + "\n");
                                             errorList.add(errorInfo);
                                             displayTokens.add(new Token(lineNum,
                                                     begin + 1, "错误", id));
@@ -451,6 +468,7 @@ public class CMMLexer {
                         case 9:
                             //node.add(new TreeNode("运算符 ： " + Token.GT));
                             System.out.println("\t"+"运算符 ： " + Token.GT);
+                            result.append("运算符 ： " + Token.GT + "\n");
                             tokens.add(new Token(lineNum, i, "运算符", Token.GT));
                             displayTokens.add(new Token(lineNum, i, "运算符",
                                     Token.GT));
@@ -463,16 +481,14 @@ public class CMMLexer {
                                 String string = cmmText.substring(begin, end);
                                 //node.add(new TreeNode("字符串 ： " + string));
                                 System.out.println("\t"+"字符串 ： " + string);
-                                tokens.add(new Token(lineNum, begin + 1, "字符串",
-                                        string));
-                                displayTokens.add(new Token(lineNum, begin + 1,
-                                        "字符串", string));
+                                result.append("字符串 ： " + string + "\n");
+                                tokens.add(new Token(lineNum, begin + 1, "字符串", string));
+                                displayTokens.add(new Token(lineNum, begin + 1, "字符串", string));
                                 //node.add(new TreeNode("分隔符 ： " + Token.DQ));
                                 System.out.println("\t"+"分隔符 ： " + Token.DQ);
-                                tokens.add(new Token(lineNum, end + 1, "分隔符",
-                                        Token.DQ));
-                                displayTokens.add(new Token(lineNum, end + 1,
-                                        "分隔符", Token.DQ));
+                                result.append("分隔符 ： " + Token.DQ + "\n");
+                                tokens.add(new Token(lineNum, end + 1, "分隔符", Token.DQ));
+                                displayTokens.add(new Token(lineNum, end + 1, "分隔符", Token.DQ));
                                 state = 0;
                             } else if (i == length - 1) {
                                 String string = cmmText.substring(begin);
@@ -481,6 +497,7 @@ public class CMMLexer {
                                         + " 缺少引号  \n";
                                 //node.add(new TreeNode(Token.ERROR + "字符串 " + string + " 缺少引号  \n"));
                                 System.out.println(Token.ERROR + "字符串 " + string + " 缺少引号  \n");
+                                result.append(Token.ERROR + "字符串 " + string + " 缺少引号  \n");
                                 errorList.add(errorInfo);
                                 displayTokens.add(new Token(lineNum, i + 1, "错误",
                                         string));
@@ -499,6 +516,7 @@ public class CMMLexer {
                                 + (i + 1) + "列：" + "\"" + ch + "\"是不可识别符号  \n";
                         //node.add(new TreeNode(Token.ERROR + "\"" + ch+ "\"是不可识别符号"));
                         System.out.println(Token.ERROR + "\"" + ch+ "\"是不可识别符号");
+                        result.append(Token.ERROR + "\"" + ch+ "\"是不可识别符号" + "\n");
                         errorList.add(errorInfo);
                         if (state == 0)
                             displayTokens.add(new Token(lineNum, i + 1, "错误",
@@ -511,16 +529,14 @@ public class CMMLexer {
                 } else if (ch == '/' && state == 3) {
                     //node.add(new TreeNode("多行注释 */"));
                     System.out.println("\t"+"多行注释 */");
-                    displayTokens.add(new Token(lineNum, begin + 1, "注释",
-                            cmmText.substring(begin, i - 1)));
+                    result.append("多行注释 */" + "\n");
+                    displayTokens.add(new Token(lineNum, begin + 1, "注释", cmmText.substring(begin, i - 1)));
                     displayTokens.add(new Token(lineNum, i, "多行注释结束符号", "*/"));
                     state = 0;
                     isNotation = false;
                 } else if (i == length - 2) {
-                    displayTokens.add(new Token(lineNum, begin + 1, "注释",
-                            cmmText.substring(begin, length - 1)));
-                    displayTokens.add(new Token(lineNum, length - 1, "换行符",
-                            "\n"));
+                    displayTokens.add(new Token(lineNum, begin + 1, "注释", cmmText.substring(begin, length - 1)));
+                    displayTokens.add(new Token(lineNum, length - 1, "换行符", "\n"));
                     state = 0;
                 } else {
                     state = 0;
@@ -549,6 +565,7 @@ public class CMMLexer {
                         //TreeNode temp = new TreeNode(eachLine);
                         //temp.add(new TreeNode("多行注释"));
                         System.out.println("\t"+"多行注释");
+                        result.append("多行注释" + "\n");
                         displayTokens.add(new Token(lineNum, 1, "注释", eachLine
                                 .substring(0, eachLine.length() - 1)));
                         displayTokens.add(new Token(lineNum,
@@ -566,12 +583,14 @@ public class CMMLexer {
             }
         }
         System.out.println("\n错误总数: "+errorList.size()+"个"+"\n");
+        result.append("\n错误总数: "+errorList.size()+"个"+"\n");
         for (int i = 0; i < errorList.size(); i++) {
             System.out.print(errorList.get(i));
         }
         for (int i = 0; i < tokens.size(); i++) {
             Token temp = tokens.get(i);
             System.out.println(temp.getLine()+" "+temp.getCulomn()+" "+temp.getKind()+" "+temp.getContent());
+            //result.append(temp.getLine()+" "+temp.getCulomn()+" "+temp.getKind()+" "+temp.getContent() + "\n");
         }
     }
 }

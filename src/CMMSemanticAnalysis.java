@@ -7,7 +7,7 @@ import java.math.BigDecimal;
  *
  * @author Leeham
  */
-public class CMMSemanticAnalysis extends Thread {
+public class CMMSemanticAnalysis {
     /* 语义分析时的符号表 */
     private SymbolTable table = new SymbolTable();
     /* 语法分析得到的抽象语法树 */
@@ -19,7 +19,10 @@ public class CMMSemanticAnalysis extends Thread {
     /* 语义分析标识符作用域 */
     private int level = 0;
     /* 用户输入 */
+
     private String userInput;
+    //语义分析结果
+    private StringBuilder result = new StringBuilder();
 
     public CMMSemanticAnalysis(TreeNode root) {
         this.root = root;
@@ -29,6 +32,10 @@ public class CMMSemanticAnalysis extends Thread {
         errorNum++;
         String s = Token.ERROR + "第 " + line + " 行：" + error + "\n";
         errorInfo += s;
+    }
+
+    public StringBuilder getResult() {
+        return result;
     }
 
 
@@ -78,6 +85,8 @@ public class CMMSemanticAnalysis extends Thread {
         if (errorNum!=0){
             System.out.print(errorInfo);
             System.out.println("程序中共有"+errorNum+"个语义错误");
+            result.append(errorInfo);
+            result.append("程序中共有"+errorNum+"个语义错误"+"\n");
         }
        /* CompilerFrame.problemArea.append("\n");
         CompilerFrame.problemArea.append("**********语义分析结果**********\n");
@@ -746,9 +755,11 @@ public class CMMSemanticAnalysis extends Thread {
         if (kind.equals("整数") || kind.equals("实数")) { // 常量
     //        CompilerFrame.consoleArea.setText(CompilerFrame.consoleArea.getText()+ content + "\n");
             System.out.println(content);
+            result.append(content+"\n");
         } else if (kind.equals("字符串")) { // 字符串
             // CompilerFrame.consoleArea.setText(CompilerFrame.consoleArea.getText()+ content + "\n");
             System.out.println(content);
+            result.append(content+"\n");
         } else if (kind.equals("标识符")) { // 标识符
             if (checkID(root, level)) {
                 if (root.getChildCount() != 0) {
@@ -763,11 +774,14 @@ public class CMMSemanticAnalysis extends Thread {
                 if (temp.getKind().equals(Token.INT)) {
                     //CompilerFrame.consoleArea.setText(CompilerFrame.consoleArea.getText()+ temp.getIntValue() + "\n");
                     System.out.println(temp.getIntValue() + "\n");
+                    result.append(temp.getIntValue() + "\n");
                 } else if (temp.getKind().equals(Token.DOUBLE)) {
                     System.out.println(temp.getRealValue() + "\n");
+                    result.append(temp.getRealValue() + "\n");
                  //   CompilerFrame.consoleArea.setText(CompilerFrame.consoleArea.getText() + temp.getRealValue() + "\n");
                 } else {
                     System.out.println(temp.getStringValue() + "\n");
+                    result.append(temp.getStringValue() + "\n");
                   //  CompilerFrame.consoleArea.setText(CompilerFrame.consoleArea.getText()+ temp.getStringValue() + "\n");
                 }
             } else {
@@ -781,6 +795,7 @@ public class CMMSemanticAnalysis extends Thread {
             if (value != null) {
                 //CompilerFrame.consoleArea.setText(CompilerFrame.consoleArea.getText()+ value + "\n");
                 System.out.println(value);
+                result.append(value+"\n");
             }
         }
     }

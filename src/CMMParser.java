@@ -18,14 +18,39 @@ public class CMMParser {
     private int errorNum = 0;
     // 错误信息
     private String errorInfo = "";
+
+    public TreeNode getRoot() {
+        return root;
+    }
+
     // 语法分析根结点
-    private static TreeNode root;
+    private TreeNode root;
+
+    public StringBuilder getResult() {
+        return result;
+    }
+
+    // 语法分析结果
+    private StringBuilder result = new StringBuilder();
 
     public CMMParser(ArrayList<Token> tokens) {
         this.tokens = tokens;
         if (tokens.size() != 0)
             currentToken = tokens.get(0);
     }
+
+    /*  parser = new CMMParser(lexer.getTokens());
+        parser.setIndex(0);
+        parser.setErrorInfo("");
+        parser.setErrorNum(0);
+        TreeNode root = parser.execute();
+        parse_log.setText("语法分析：\n");
+        parse_log.append(parser.getErrorInfo()+"\n");
+        parse_log.append(root.getChildCount()+" ");
+        parse_log.append(root.getContent()+"\n");
+        showParseResult(root);*/
+
+
 
     public int getErrorNum() {
         return errorNum;
@@ -52,12 +77,36 @@ public class CMMParser {
     }
 
 
-    public TreeNode execute() {
+    public void execute() {
+        setIndex(0);
+        setErrorInfo("");
+        setErrorNum(0);
         root = new TreeNode("PROGRAM");
         for (; index < tokens.size();) {
             root.add(statement());
         }
-        return root;
+        result.append(getErrorInfo()+"\n");
+        result.append(root.getChildCount()+" ");
+        result.append(root.getContent()+"\n");
+        show(root);
+    }
+    private void show(TreeNode temp){
+        TreeNode child;
+        int count = temp.getChildCount();
+        //System.out.println(temp.getContent());
+        //System.out.println(count);
+        for (int i = 0; i < temp.getChildCount(); i++) {
+            child = temp.getChildAt(i);
+            //System.out.print(child.getChildCount());
+            result.append(String.valueOf(child.getChildCount()));
+            for (int j = 0; j < child.getLevel(); j++) {
+                //System.out.print("   |");
+                result.append("  |");
+            }
+            //System.out.println(child.getContent());
+            result.append(child.getContent()+"\n");
+            show(child);
+        }
     }
 
 
