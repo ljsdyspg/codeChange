@@ -56,15 +56,21 @@ public class Index extends JFrame{
 
         //代码显示区
         textarea = new JTextArea(code);
+        textarea.setFont(new Font("Serif",0,20));
         textarea_scroll = new JScrollPane(textarea);
         //控制台
         console = new JTextArea("This is a console.");
+        console.setFont(new Font("Serif",0,20));
         console_scroll = new JScrollPane(console);
+
         //词法分析结果
         lexer_log = new JTextArea("Here are lexer results.");
+        lexer_log.setFont(new Font("Serif",0,20));
         lexer_log_scroll = new JScrollPane(lexer_log);
+
         //语法分析结果
         parse_log = new JTextArea("Here are parse results.");
+        parse_log.setFont(new Font("Serif",0,20));
         parse_log_scroll = new JScrollPane(parse_log);
 
         lsplitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT);

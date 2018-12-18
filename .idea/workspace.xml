@@ -2,12 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0d97121b-cd58-4a91-b45f-b80da47eb69b" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Index.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test3_数组.cmm" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CMMLexer.java" afterPath="$PROJECT_DIR$/src/CMMLexer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CMMParser.java" afterPath="$PROJECT_DIR$/src/CMMParser.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CMMSemanticAnalysis.java" afterPath="$PROJECT_DIR$/src/CMMSemanticAnalysis.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/run.java" afterPath="$PROJECT_DIR$/src/run.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Index.java" afterPath="$PROJECT_DIR$/src/Index.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test.cmm" afterPath="$PROJECT_DIR$/test.cmm" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test2.cmm" afterPath="$PROJECT_DIR$/test2.cmm" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -22,12 +23,10 @@
       <file leaf-file-name="CMMLexer.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/CMMLexer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="395">
+            <state relative-caret-position="0">
               <caret line="548" column="16" lean-forward="false" selection-start-line="548" selection-start-column="16" selection-end-line="548" selection-end-column="16" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#372#379#0" expanded="true" />
-                <element signature="e#474#481#0" expanded="true" />
                 <element signature="e#726#727#0" expanded="true" />
                 <element signature="e#755#756#0" expanded="true" />
                 <element signature="e#790#791#0" expanded="true" />
@@ -53,16 +52,40 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Index.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Index.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Index.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="704">
-              <caret line="82" column="48" lean-forward="true" selection-start-line="82" selection-start-column="48" selection-end-line="82" selection-end-column="48" />
+            <state relative-caret-position="252">
+              <caret line="63" column="50" lean-forward="false" selection-start-line="63" selection-start-column="50" selection-end-line="63" selection-end-column="50" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="test3_数组.cmm" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test3_数组.cmm">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="252">
+              <caret line="9" column="21" lean-forward="false" selection-start-line="9" selection-start-column="21" selection-end-line="9" selection-end-column="21" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CMMSemanticAnalysis.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/CMMSemanticAnalysis.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="31">
+              <caret line="940" column="37" lean-forward="true" selection-start-line="940" selection-start-column="37" selection-end-line="940" selection-end-column="37" />
               <folding>
-                <element signature="e#3136#3137#0" expanded="true" />
-                <element signature="e#3182#3183#0" expanded="true" />
-                <element signature="e#3518#3519#0" expanded="true" />
-                <element signature="e#3557#3558#0" expanded="true" />
+                <element signature="docComment;class#CMMSemanticAnalysis#0" expanded="false" />
+                <element signature="method#setUserInput#0;class#CMMSemanticAnalysis#0" expanded="false" />
+                <element signature="method#forAssign#0;class#CMMSemanticAnalysis#0" expanded="false" />
+                <element signature="method#forFor#0;class#CMMSemanticAnalysis#0" expanded="false" />
+                <element signature="method#forIf#0;class#CMMSemanticAnalysis#0" expanded="false" />
+                <element signature="method#forWhile#0;class#CMMSemanticAnalysis#0" expanded="false" />
+                <element signature="e#32664#32706#0" expanded="false" />
+                <element signature="method#forCondition#0;class#CMMSemanticAnalysis#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -71,42 +94,8 @@
       <file leaf-file-name="ConstVar.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ConstVar.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="41">
+            <state relative-caret-position="28">
               <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CMMSemanticAnalysis.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/CMMSemanticAnalysis.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="369">
-              <caret line="84" column="25" lean-forward="true" selection-start-line="84" selection-start-column="25" selection-end-line="84" selection-end-column="25" />
-              <folding>
-                <element signature="docComment;class#CMMSemanticAnalysis#0" expanded="false" />
-                <element signature="method#error#0;class#CMMSemanticAnalysis#0" expanded="false" />
-                <element signature="e#820#821#0" expanded="true" />
-                <element signature="e#849#850#0" expanded="true" />
-                <element signature="method#setUserInput#0;class#CMMSemanticAnalysis#0" expanded="false" />
-                <element signature="method#forAssign#0;class#CMMSemanticAnalysis#0" expanded="false" />
-                <element signature="method#forFor#0;class#CMMSemanticAnalysis#0" expanded="false" />
-                <element signature="method#forIf#0;class#CMMSemanticAnalysis#0" expanded="false" />
-                <element signature="method#forWhile#0;class#CMMSemanticAnalysis#0" expanded="false" />
-                <element signature="e#32650#32692#0" expanded="false" />
-                <element signature="method#forCondition#0;class#CMMSemanticAnalysis#0" expanded="false" />
-                <element signature="method#forExpression#0;class#CMMSemanticAnalysis#0" expanded="false" />
-                <element signature="method#forArray#0;class#CMMSemanticAnalysis#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SymbolTable.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/SymbolTable.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="574">
-              <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -115,8 +104,8 @@
       <file leaf-file-name="test.cmm" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test.cmm">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="287">
-              <caret line="7" column="22" lean-forward="false" selection-start-line="7" selection-start-column="22" selection-end-line="7" selection-end-column="22" />
+            <state relative-caret-position="252">
+              <caret line="9" column="24" lean-forward="false" selection-start-line="9" selection-start-column="24" selection-end-line="9" selection-end-column="24" />
               <folding />
             </state>
           </provider>
@@ -125,8 +114,8 @@
       <file leaf-file-name="CMMParser.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/CMMParser.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="164">
-              <caret line="94" column="37" lean-forward="true" selection-start-line="94" selection-start-column="37" selection-end-line="94" selection-end-column="37" />
+            <state relative-caret-position="479">
+              <caret line="324" column="32" lean-forward="false" selection-start-line="324" selection-start-column="32" selection-end-line="324" selection-end-column="32" />
               <folding>
                 <element signature="docComment;class#CMMParser#0" expanded="false" />
                 <element signature="method#CMMParser#0;class#CMMParser#0" expanded="false" />
@@ -134,18 +123,13 @@
                 <element signature="method#error#0;class#CMMParser#0" expanded="false" />
                 <element signature="method#statement#0;class#CMMParser#0" expanded="false" />
                 <element signature="method#for_stm#0;class#CMMParser#0" expanded="false" />
-                <element signature="method#if_stm#0;class#CMMParser#0" expanded="false" />
                 <element signature="method#while_stm#0;class#CMMParser#0" expanded="false" />
                 <element signature="method#read_stm#0;class#CMMParser#0" expanded="false" />
                 <element signature="method#write_stm#0;class#CMMParser#0" expanded="false" />
                 <element signature="method#assign_stm#0;class#CMMParser#0" expanded="false" />
                 <element signature="method#declare_stm#0;class#CMMParser#0" expanded="false" />
-                <element signature="method#declare_aid#0;class#CMMParser#0" expanded="false" />
-                <element signature="method#condition#0;class#CMMParser#0" expanded="false" />
-                <element signature="method#expression#0;class#CMMParser#0" expanded="false" />
                 <element signature="method#term#0;class#CMMParser#0" expanded="false" />
                 <element signature="method#factor#0;class#CMMParser#0" expanded="false" />
-                <element signature="method#array#0;class#CMMParser#0" expanded="false" />
                 <element signature="method#add_op#0;class#CMMParser#0" expanded="false" />
                 <element signature="method#mul_op#0;class#CMMParser#0" expanded="false" />
                 <element signature="method#comparison_op#0;class#CMMParser#0" expanded="false" />
@@ -154,11 +138,21 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="Token.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Token.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="308">
+              <caret line="34" column="31" lean-forward="false" selection-start-line="34" selection-start-column="31" selection-end-line="34" selection-end-column="31" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="run.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/run.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="597">
-              <caret line="27" column="0" lean-forward="true" selection-start-line="27" selection-start-column="0" selection-end-line="28" selection-end-column="25" />
+            <state relative-caret-position="199">
+              <caret line="26" column="36" lean-forward="false" selection-start-line="26" selection-start-column="36" selection-end-line="26" selection-end-column="36" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -166,21 +160,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Thread.java" pinned="false" current-in-tab="false">
-        <entry file="jar://C:/Program Files/Java/jdk1.8.0_171/src.zip!/java/lang/Thread.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="426">
-              <caret line="698" column="29" lean-forward="false" selection-start-line="698" selection-start-column="29" selection-end-line="698" selection-end-column="29" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="test2.cmm" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test2.cmm">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="82">
-              <caret line="2" column="11" lean-forward="false" selection-start-line="2" selection-start-column="11" selection-end-line="2" selection-end-column="11" />
+            <state relative-caret-position="112">
+              <caret line="4" column="11" lean-forward="true" selection-start-line="4" selection-start-column="11" selection-end-line="4" selection-end-column="11" />
               <folding />
             </state>
           </provider>
@@ -197,8 +181,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>println(</find>
-      <find>ConstVar.</find>
       <find>ERROR</find>
       <find>ERROR:</find>
       <find>列：</find>
@@ -209,8 +191,6 @@
       <find>node</find>
       <find>tokens</find>
       <find>displayTokens</find>
-      <find>real</find>
-      <find>error</find>
       <find>ConstVar</find>
       <find>REAL</find>
       <find>write</find>
@@ -227,17 +207,21 @@
       <find>System.out.p</find>
       <find>Tr</find>
       <find>result.append(&quot;\t&quot;+</find>
+      <find>LBRACE</find>
+      <find>real</find>
+      <find>error</find>
+      <find>除数</find>
     </findStrings>
     <replaceStrings>
       <replace>println(&quot;\t&quot;+</replace>
       <replace>Token.</replace>
       <replace>ERROR:</replace>
       <replace>列：</replace>
-      <replace>double</replace>
       <replace>Double</replace>
       <replace>Token</replace>
       <replace>DOUBLE</replace>
       <replace>result.append(</replace>
+      <replace>double</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -253,15 +237,16 @@
       <list>
         <option value="$PROJECT_DIR$/src/ConstVar.java" />
         <option value="$PROJECT_DIR$/src/Token.java" />
-        <option value="$PROJECT_DIR$/test.cmm" />
         <option value="$PROJECT_DIR$/src/TreeNode.java" />
         <option value="$PROJECT_DIR$/src/SymbolTable.java" />
-        <option value="$PROJECT_DIR$/test2.cmm" />
         <option value="$PROJECT_DIR$/src/CMMLexer.java" />
-        <option value="$PROJECT_DIR$/src/CMMSemanticAnalysis.java" />
-        <option value="$PROJECT_DIR$/src/run.java" />
+        <option value="$PROJECT_DIR$/test.cmm" />
         <option value="$PROJECT_DIR$/src/CMMParser.java" />
         <option value="$PROJECT_DIR$/src/Index.java" />
+        <option value="$PROJECT_DIR$/test3_数组.cmm" />
+        <option value="$PROJECT_DIR$/test2.cmm" />
+        <option value="$PROJECT_DIR$/src/run.java" />
+        <option value="$PROJECT_DIR$/src/CMMSemanticAnalysis.java" />
       </list>
     </option>
   </component>
@@ -272,8 +257,9 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="width" value="3840" />
-    <option name="height" value="2160" />
+    <option name="x" value="-8" />
+    <option name="width" value="976" />
+    <option name="height" value="1050" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -291,6 +277,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
@@ -309,8 +297,6 @@
         </subPane>
       </pane>
       <pane id="PackagesPane" />
-      <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -319,12 +305,14 @@
     <property name="project.structure.side.proportion" value="0.0" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\40136\Desktop\test\codeChange" />
       <recent name="C:\Users\40136\Desktop\codeChange\src" />
       <recent name="C:\Users\40136\Desktop\codeChange" />
     </key>
@@ -482,11 +470,12 @@
       <workItem from="1545042183657" duration="2330000" />
       <workItem from="1545045337384" duration="881000" />
       <workItem from="1545133862834" duration="8681000" />
+      <workItem from="1545148848843" duration="3006000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="43594000" />
+    <option name="totallyTimeSpent" value="46600000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -498,41 +487,41 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-11" y="-11" width="3862" height="2136" extended-state="6" />
+    <frame x="-9" y="-9" width="1938" height="1060" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32971016" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Tool Output" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32971016" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Anonymous Apex" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30449438" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17328326" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="ANTLR Preview" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39958593" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32971016" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32971016" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30538303" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17073171" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="SOQL Query" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Log Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39958593" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Anonymous Apex" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="SOQL Query" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Log Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -543,41 +532,17 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="15" />
+      <option name="time" value="16" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/CMMSemanticAnalysis.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1435">
-          <caret line="39" column="5" lean-forward="true" selection-start-line="39" selection-start-column="5" selection-end-line="39" selection-end-column="5" />
-          <folding>
-            <element signature="docComment;class#CMMSemanticAnalysis#0" expanded="false" />
-            <element signature="method#error#0;class#CMMSemanticAnalysis#0" expanded="false" />
-            <element signature="e#820#821#0" expanded="true" />
-            <element signature="e#849#850#0" expanded="true" />
-            <element signature="method#setUserInput#0;class#CMMSemanticAnalysis#0" expanded="false" />
-            <element signature="method#forAssign#0;class#CMMSemanticAnalysis#0" expanded="false" />
-            <element signature="method#forFor#0;class#CMMSemanticAnalysis#0" expanded="false" />
-            <element signature="method#forIf#0;class#CMMSemanticAnalysis#0" expanded="false" />
-            <element signature="method#forWhile#0;class#CMMSemanticAnalysis#0" expanded="false" />
-            <element signature="e#32650#32692#0" expanded="false" />
-            <element signature="method#forCondition#0;class#CMMSemanticAnalysis#0" expanded="false" />
-            <element signature="method#forExpression#0;class#CMMSemanticAnalysis#0" expanded="false" />
-            <element signature="method#forArray#0;class#CMMSemanticAnalysis#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/CMMLexer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="22632">
           <caret line="573" column="89" lean-forward="false" selection-start-line="573" selection-start-column="89" selection-end-line="573" selection-end-column="89" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#372#379#0" expanded="true" />
-            <element signature="e#474#481#0" expanded="true" />
             <element signature="e#726#727#0" expanded="true" />
             <element signature="e#755#756#0" expanded="true" />
             <element signature="e#790#791#0" expanded="true" />
@@ -613,18 +578,13 @@
             <element signature="method#error#0;class#CMMParser#0" expanded="false" />
             <element signature="method#statement#0;class#CMMParser#0" expanded="false" />
             <element signature="method#for_stm#0;class#CMMParser#0" expanded="false" />
-            <element signature="method#if_stm#0;class#CMMParser#0" expanded="false" />
             <element signature="method#while_stm#0;class#CMMParser#0" expanded="false" />
             <element signature="method#read_stm#0;class#CMMParser#0" expanded="false" />
             <element signature="method#write_stm#0;class#CMMParser#0" expanded="false" />
             <element signature="method#assign_stm#0;class#CMMParser#0" expanded="false" />
             <element signature="method#declare_stm#0;class#CMMParser#0" expanded="false" />
-            <element signature="method#declare_aid#0;class#CMMParser#0" expanded="false" />
-            <element signature="method#condition#0;class#CMMParser#0" expanded="false" />
-            <element signature="method#expression#0;class#CMMParser#0" expanded="false" />
             <element signature="method#term#0;class#CMMParser#0" expanded="false" />
             <element signature="method#factor#0;class#CMMParser#0" expanded="false" />
-            <element signature="method#array#0;class#CMMParser#0" expanded="false" />
             <element signature="method#add_op#0;class#CMMParser#0" expanded="false" />
             <element signature="method#mul_op#0;class#CMMParser#0" expanded="false" />
             <element signature="method#comparison_op#0;class#CMMParser#0" expanded="false" />
@@ -637,16 +597,16 @@
         <state relative-caret-position="82">
           <caret line="2" column="52" lean-forward="false" selection-start-line="2" selection-start-column="30" selection-end-line="2" selection-end-column="52" />
           <folding>
-            <element signature="e#744#745#0" expanded="true" />
-            <element signature="e#766#767#0" expanded="true" />
-            <element signature="e#870#871#0" expanded="true" />
-            <element signature="e#891#892#0" expanded="true" />
-            <element signature="e#991#992#0" expanded="true" />
-            <element signature="e#1012#1013#0" expanded="true" />
+            <element signature="e#744#745#0" expanded="false" />
+            <element signature="e#766#767#0" expanded="false" />
+            <element signature="e#870#871#0" expanded="false" />
+            <element signature="e#891#892#0" expanded="false" />
+            <element signature="e#991#992#0" expanded="false" />
+            <element signature="e#1012#1013#0" expanded="false" />
             <element signature="method#setContent#0;class#TreeNode#0" expanded="false" />
-            <element signature="e#1151#1152#0" expanded="true" />
-            <element signature="e#1220#1221#0" expanded="true" />
-            <element signature="e#1268#1269#0" expanded="true" />
+            <element signature="e#1151#1152#0" expanded="false" />
+            <element signature="e#1220#1221#0" expanded="false" />
+            <element signature="e#1268#1269#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -705,8 +665,6 @@
           <caret line="573" column="89" lean-forward="false" selection-start-line="573" selection-start-column="89" selection-end-line="573" selection-end-column="89" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#372#379#0" expanded="true" />
-            <element signature="e#474#481#0" expanded="true" />
             <element signature="e#726#727#0" expanded="true" />
             <element signature="e#755#756#0" expanded="true" />
             <element signature="e#790#791#0" expanded="true" />
@@ -742,18 +700,13 @@
             <element signature="method#error#0;class#CMMParser#0" expanded="false" />
             <element signature="method#statement#0;class#CMMParser#0" expanded="false" />
             <element signature="method#for_stm#0;class#CMMParser#0" expanded="false" />
-            <element signature="method#if_stm#0;class#CMMParser#0" expanded="false" />
             <element signature="method#while_stm#0;class#CMMParser#0" expanded="false" />
             <element signature="method#read_stm#0;class#CMMParser#0" expanded="false" />
             <element signature="method#write_stm#0;class#CMMParser#0" expanded="false" />
             <element signature="method#assign_stm#0;class#CMMParser#0" expanded="false" />
             <element signature="method#declare_stm#0;class#CMMParser#0" expanded="false" />
-            <element signature="method#declare_aid#0;class#CMMParser#0" expanded="false" />
-            <element signature="method#condition#0;class#CMMParser#0" expanded="false" />
-            <element signature="method#expression#0;class#CMMParser#0" expanded="false" />
             <element signature="method#term#0;class#CMMParser#0" expanded="false" />
             <element signature="method#factor#0;class#CMMParser#0" expanded="false" />
-            <element signature="method#array#0;class#CMMParser#0" expanded="false" />
             <element signature="method#add_op#0;class#CMMParser#0" expanded="false" />
             <element signature="method#mul_op#0;class#CMMParser#0" expanded="false" />
             <element signature="method#comparison_op#0;class#CMMParser#0" expanded="false" />
@@ -766,16 +719,16 @@
         <state relative-caret-position="82">
           <caret line="2" column="52" lean-forward="false" selection-start-line="2" selection-start-column="22" selection-end-line="2" selection-end-column="52" />
           <folding>
-            <element signature="e#744#745#0" expanded="true" />
-            <element signature="e#766#767#0" expanded="true" />
-            <element signature="e#870#871#0" expanded="true" />
-            <element signature="e#891#892#0" expanded="true" />
-            <element signature="e#991#992#0" expanded="true" />
-            <element signature="e#1012#1013#0" expanded="true" />
+            <element signature="e#744#745#0" expanded="false" />
+            <element signature="e#766#767#0" expanded="false" />
+            <element signature="e#870#871#0" expanded="false" />
+            <element signature="e#891#892#0" expanded="false" />
+            <element signature="e#991#992#0" expanded="false" />
+            <element signature="e#1012#1013#0" expanded="false" />
             <element signature="method#setContent#0;class#TreeNode#0" expanded="false" />
-            <element signature="e#1151#1152#0" expanded="true" />
-            <element signature="e#1220#1221#0" expanded="true" />
-            <element signature="e#1268#1269#0" expanded="true" />
+            <element signature="e#1151#1152#0" expanded="false" />
+            <element signature="e#1220#1221#0" expanded="false" />
+            <element signature="e#1268#1269#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -826,8 +779,6 @@
           <caret line="573" column="89" lean-forward="false" selection-start-line="573" selection-start-column="89" selection-end-line="573" selection-end-column="89" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#372#379#0" expanded="true" />
-            <element signature="e#474#481#0" expanded="true" />
             <element signature="e#726#727#0" expanded="true" />
             <element signature="e#755#756#0" expanded="true" />
             <element signature="e#790#791#0" expanded="true" />
@@ -863,18 +814,13 @@
             <element signature="method#error#0;class#CMMParser#0" expanded="false" />
             <element signature="method#statement#0;class#CMMParser#0" expanded="false" />
             <element signature="method#for_stm#0;class#CMMParser#0" expanded="false" />
-            <element signature="method#if_stm#0;class#CMMParser#0" expanded="false" />
             <element signature="method#while_stm#0;class#CMMParser#0" expanded="false" />
             <element signature="method#read_stm#0;class#CMMParser#0" expanded="false" />
             <element signature="method#write_stm#0;class#CMMParser#0" expanded="false" />
             <element signature="method#assign_stm#0;class#CMMParser#0" expanded="false" />
             <element signature="method#declare_stm#0;class#CMMParser#0" expanded="false" />
-            <element signature="method#declare_aid#0;class#CMMParser#0" expanded="false" />
-            <element signature="method#condition#0;class#CMMParser#0" expanded="false" />
-            <element signature="method#expression#0;class#CMMParser#0" expanded="false" />
             <element signature="method#term#0;class#CMMParser#0" expanded="false" />
             <element signature="method#factor#0;class#CMMParser#0" expanded="false" />
-            <element signature="method#array#0;class#CMMParser#0" expanded="false" />
             <element signature="method#add_op#0;class#CMMParser#0" expanded="false" />
             <element signature="method#mul_op#0;class#CMMParser#0" expanded="false" />
             <element signature="method#comparison_op#0;class#CMMParser#0" expanded="false" />
@@ -887,16 +833,16 @@
         <state relative-caret-position="82">
           <caret line="2" column="52" lean-forward="false" selection-start-line="2" selection-start-column="22" selection-end-line="2" selection-end-column="52" />
           <folding>
-            <element signature="e#744#745#0" expanded="true" />
-            <element signature="e#766#767#0" expanded="true" />
-            <element signature="e#870#871#0" expanded="true" />
-            <element signature="e#891#892#0" expanded="true" />
-            <element signature="e#991#992#0" expanded="true" />
-            <element signature="e#1012#1013#0" expanded="true" />
+            <element signature="e#744#745#0" expanded="false" />
+            <element signature="e#766#767#0" expanded="false" />
+            <element signature="e#870#871#0" expanded="false" />
+            <element signature="e#891#892#0" expanded="false" />
+            <element signature="e#991#992#0" expanded="false" />
+            <element signature="e#1012#1013#0" expanded="false" />
             <element signature="method#setContent#0;class#TreeNode#0" expanded="false" />
-            <element signature="e#1151#1152#0" expanded="true" />
-            <element signature="e#1220#1221#0" expanded="true" />
-            <element signature="e#1268#1269#0" expanded="true" />
+            <element signature="e#1151#1152#0" expanded="false" />
+            <element signature="e#1220#1221#0" expanded="false" />
+            <element signature="e#1268#1269#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -947,8 +893,6 @@
           <caret line="101" column="24" lean-forward="false" selection-start-line="101" selection-start-column="24" selection-end-line="101" selection-end-column="24" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#372#379#0" expanded="true" />
-            <element signature="e#474#481#0" expanded="true" />
             <element signature="e#726#727#0" expanded="true" />
             <element signature="e#755#756#0" expanded="true" />
             <element signature="e#790#791#0" expanded="true" />
@@ -978,16 +922,16 @@
         <state relative-caret-position="697">
           <caret line="17" column="11" lean-forward="false" selection-start-line="17" selection-start-column="11" selection-end-line="17" selection-end-column="11" />
           <folding>
-            <element signature="e#744#745#0" expanded="true" />
-            <element signature="e#766#767#0" expanded="true" />
-            <element signature="e#870#871#0" expanded="true" />
-            <element signature="e#891#892#0" expanded="true" />
-            <element signature="e#991#992#0" expanded="true" />
-            <element signature="e#1012#1013#0" expanded="true" />
+            <element signature="e#744#745#0" expanded="false" />
+            <element signature="e#766#767#0" expanded="false" />
+            <element signature="e#870#871#0" expanded="false" />
+            <element signature="e#891#892#0" expanded="false" />
+            <element signature="e#991#992#0" expanded="false" />
+            <element signature="e#1012#1013#0" expanded="false" />
             <element signature="method#setContent#0;class#TreeNode#0" expanded="false" />
-            <element signature="e#1151#1152#0" expanded="true" />
-            <element signature="e#1220#1221#0" expanded="true" />
-            <element signature="e#1268#1269#0" expanded="true" />
+            <element signature="e#1151#1152#0" expanded="false" />
+            <element signature="e#1220#1221#0" expanded="false" />
+            <element signature="e#1268#1269#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1038,8 +982,6 @@
           <caret line="101" column="24" lean-forward="true" selection-start-line="101" selection-start-column="24" selection-end-line="101" selection-end-column="24" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#372#379#0" expanded="true" />
-            <element signature="e#474#481#0" expanded="true" />
             <element signature="e#726#727#0" expanded="true" />
             <element signature="e#755#756#0" expanded="true" />
             <element signature="e#790#791#0" expanded="true" />
@@ -1069,16 +1011,16 @@
         <state relative-caret-position="697">
           <caret line="17" column="11" lean-forward="false" selection-start-line="17" selection-start-column="11" selection-end-line="17" selection-end-column="11" />
           <folding>
-            <element signature="e#744#745#0" expanded="true" />
-            <element signature="e#766#767#0" expanded="true" />
-            <element signature="e#870#871#0" expanded="true" />
-            <element signature="e#891#892#0" expanded="true" />
-            <element signature="e#991#992#0" expanded="true" />
-            <element signature="e#1012#1013#0" expanded="true" />
+            <element signature="e#744#745#0" expanded="false" />
+            <element signature="e#766#767#0" expanded="false" />
+            <element signature="e#870#871#0" expanded="false" />
+            <element signature="e#891#892#0" expanded="false" />
+            <element signature="e#991#992#0" expanded="false" />
+            <element signature="e#1012#1013#0" expanded="false" />
             <element signature="method#setContent#0;class#TreeNode#0" expanded="false" />
-            <element signature="e#1151#1152#0" expanded="true" />
-            <element signature="e#1220#1221#0" expanded="true" />
-            <element signature="e#1268#1269#0" expanded="true" />
+            <element signature="e#1151#1152#0" expanded="false" />
+            <element signature="e#1220#1221#0" expanded="false" />
+            <element signature="e#1268#1269#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1123,46 +1065,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_171/src.zip!/java/lang/String.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="633">
-          <caret line="2131" column="19" lean-forward="false" selection-start-line="2131" selection-start-column="19" selection-end-line="2131" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_171/src.zip!/java/lang/String.java" />
     <entry file="file://$USER_HOME$/AppData/Local/Temp/zhidao.baidu.com.url" />
     <entry file="file://$PROJECT_DIR$/src/SymbolTableElement.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2214">
           <caret line="78" column="0" lean-forward="false" selection-start-line="78" selection-start-column="0" selection-end-line="78" selection-end-column="0" />
           <folding>
-            <element signature="e#656#657#0" expanded="true" />
-            <element signature="e#674#675#0" expanded="true" />
-            <element signature="e#762#763#0" expanded="true" />
-            <element signature="e#780#781#0" expanded="true" />
-            <element signature="e#984#985#0" expanded="true" />
-            <element signature="e#1003#1004#0" expanded="true" />
-            <element signature="e#1096#1097#0" expanded="true" />
-            <element signature="e#1118#1119#0" expanded="true" />
-            <element signature="e#1227#1228#0" expanded="true" />
-            <element signature="e#1250#1251#0" expanded="true" />
-            <element signature="e#1390#1391#0" expanded="true" />
-            <element signature="e#1441#1442#0" expanded="true" />
-            <element signature="e#1478#1479#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Token.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2870">
-          <caret line="74" column="0" lean-forward="false" selection-start-line="74" selection-start-column="0" selection-end-line="74" selection-end-column="0" />
-          <folding>
-            <element signature="e#2040#2041#0" expanded="true" />
-            <element signature="e#2067#2068#0" expanded="true" />
-            <element signature="e#2194#2195#0" expanded="true" />
-            <element signature="e#2433#2434#0" expanded="true" />
-            <element signature="e#2463#2464#0" expanded="true" />
+            <element signature="e#656#657#0" expanded="false" />
+            <element signature="e#674#675#0" expanded="false" />
+            <element signature="e#762#763#0" expanded="false" />
+            <element signature="e#780#781#0" expanded="false" />
+            <element signature="e#984#985#0" expanded="false" />
+            <element signature="e#1003#1004#0" expanded="false" />
+            <element signature="e#1096#1097#0" expanded="false" />
+            <element signature="e#1118#1119#0" expanded="false" />
+            <element signature="e#1227#1228#0" expanded="false" />
+            <element signature="e#1250#1251#0" expanded="false" />
+            <element signature="e#1390#1391#0" expanded="false" />
+            <element signature="e#1441#1442#0" expanded="false" />
+            <element signature="e#1478#1479#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1172,76 +1094,36 @@
         <state relative-caret-position="2214">
           <caret line="64" column="0" lean-forward="false" selection-start-line="64" selection-start-column="0" selection-end-line="64" selection-end-column="0" />
           <folding>
-            <element signature="e#744#745#0" expanded="true" />
-            <element signature="e#766#767#0" expanded="true" />
-            <element signature="e#870#871#0" expanded="true" />
-            <element signature="e#891#892#0" expanded="true" />
-            <element signature="e#991#992#0" expanded="true" />
-            <element signature="e#1012#1013#0" expanded="true" />
+            <element signature="e#744#745#0" expanded="false" />
+            <element signature="e#766#767#0" expanded="false" />
+            <element signature="e#870#871#0" expanded="false" />
+            <element signature="e#891#892#0" expanded="false" />
+            <element signature="e#991#992#0" expanded="false" />
+            <element signature="e#1012#1013#0" expanded="false" />
             <element signature="method#setContent#0;class#TreeNode#0" expanded="false" />
-            <element signature="e#1151#1152#0" expanded="true" />
-            <element signature="e#1220#1221#0" expanded="true" />
-            <element signature="e#1268#1269#0" expanded="true" />
+            <element signature="e#1151#1152#0" expanded="false" />
+            <element signature="e#1220#1221#0" expanded="false" />
+            <element signature="e#1268#1269#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test.cmm">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="287">
-          <caret line="7" column="22" lean-forward="false" selection-start-line="7" selection-start-column="22" selection-end-line="7" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test2.cmm">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="82">
-          <caret line="2" column="11" lean-forward="false" selection-start-line="2" selection-start-column="11" selection-end-line="2" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_171/src.zip!/java/lang/Object.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="436">
-          <caret line="270" column="29" lean-forward="false" selection-start-line="270" selection-start-column="29" selection-end-line="270" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_171/src.zip!/java/lang/Thread.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="426">
-          <caret line="698" column="29" lean-forward="false" selection-start-line="698" selection-start-column="29" selection-end-line="698" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_171/src.zip!/java/lang/Object.java" />
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_171/src.zip!/java/lang/Thread.java" />
     <entry file="file://$PROJECT_DIR$/src/SymbolTable.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="574">
+        <state relative-caret-position="392">
           <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ConstVar.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="41">
-          <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/CMMLexer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="395">
+        <state relative-caret-position="0">
           <caret line="548" column="16" lean-forward="false" selection-start-line="548" selection-start-column="16" selection-end-line="548" selection-end-column="16" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#372#379#0" expanded="true" />
-            <element signature="e#474#481#0" expanded="true" />
             <element signature="e#726#727#0" expanded="true" />
             <element signature="e#755#756#0" expanded="true" />
             <element signature="e#790#791#0" expanded="true" />
@@ -1266,32 +1148,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/CMMSemanticAnalysis.java">
+    <entry file="file://$PROJECT_DIR$/src/Token.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="369">
-          <caret line="84" column="25" lean-forward="true" selection-start-line="84" selection-start-column="25" selection-end-line="84" selection-end-column="25" />
-          <folding>
-            <element signature="docComment;class#CMMSemanticAnalysis#0" expanded="false" />
-            <element signature="method#error#0;class#CMMSemanticAnalysis#0" expanded="false" />
-            <element signature="e#820#821#0" expanded="true" />
-            <element signature="e#849#850#0" expanded="true" />
-            <element signature="method#setUserInput#0;class#CMMSemanticAnalysis#0" expanded="false" />
-            <element signature="method#forAssign#0;class#CMMSemanticAnalysis#0" expanded="false" />
-            <element signature="method#forFor#0;class#CMMSemanticAnalysis#0" expanded="false" />
-            <element signature="method#forIf#0;class#CMMSemanticAnalysis#0" expanded="false" />
-            <element signature="method#forWhile#0;class#CMMSemanticAnalysis#0" expanded="false" />
-            <element signature="e#32650#32692#0" expanded="false" />
-            <element signature="method#forCondition#0;class#CMMSemanticAnalysis#0" expanded="false" />
-            <element signature="method#forExpression#0;class#CMMSemanticAnalysis#0" expanded="false" />
-            <element signature="method#forArray#0;class#CMMSemanticAnalysis#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="308">
+          <caret line="34" column="31" lean-forward="false" selection-start-line="34" selection-start-column="31" selection-end-line="34" selection-end-column="31" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/CMMParser.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="164">
-          <caret line="94" column="37" lean-forward="true" selection-start-line="94" selection-start-column="37" selection-end-line="94" selection-end-column="37" />
+        <state relative-caret-position="479">
+          <caret line="324" column="32" lean-forward="false" selection-start-line="324" selection-start-column="32" selection-end-line="324" selection-end-column="32" />
           <folding>
             <element signature="docComment;class#CMMParser#0" expanded="false" />
             <element signature="method#CMMParser#0;class#CMMParser#0" expanded="false" />
@@ -1299,18 +1167,13 @@
             <element signature="method#error#0;class#CMMParser#0" expanded="false" />
             <element signature="method#statement#0;class#CMMParser#0" expanded="false" />
             <element signature="method#for_stm#0;class#CMMParser#0" expanded="false" />
-            <element signature="method#if_stm#0;class#CMMParser#0" expanded="false" />
             <element signature="method#while_stm#0;class#CMMParser#0" expanded="false" />
             <element signature="method#read_stm#0;class#CMMParser#0" expanded="false" />
             <element signature="method#write_stm#0;class#CMMParser#0" expanded="false" />
             <element signature="method#assign_stm#0;class#CMMParser#0" expanded="false" />
             <element signature="method#declare_stm#0;class#CMMParser#0" expanded="false" />
-            <element signature="method#declare_aid#0;class#CMMParser#0" expanded="false" />
-            <element signature="method#condition#0;class#CMMParser#0" expanded="false" />
-            <element signature="method#expression#0;class#CMMParser#0" expanded="false" />
             <element signature="method#term#0;class#CMMParser#0" expanded="false" />
             <element signature="method#factor#0;class#CMMParser#0" expanded="false" />
-            <element signature="method#array#0;class#CMMParser#0" expanded="false" />
             <element signature="method#add_op#0;class#CMMParser#0" expanded="false" />
             <element signature="method#mul_op#0;class#CMMParser#0" expanded="false" />
             <element signature="method#comparison_op#0;class#CMMParser#0" expanded="false" />
@@ -1318,25 +1181,69 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Index.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="63" column="50" lean-forward="false" selection-start-line="63" selection-start-column="50" selection-end-line="63" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ConstVar.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="28">
+          <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test3_数组.cmm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="9" column="21" lean-forward="false" selection-start-line="9" selection-start-column="21" selection-end-line="9" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test.cmm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="9" column="24" lean-forward="false" selection-start-line="9" selection-start-column="24" selection-end-line="9" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test2.cmm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="112">
+          <caret line="4" column="11" lean-forward="true" selection-start-line="4" selection-start-column="11" selection-end-line="4" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/run.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="597">
-          <caret line="27" column="0" lean-forward="true" selection-start-line="27" selection-start-column="0" selection-end-line="28" selection-end-column="25" />
+        <state relative-caret-position="199">
+          <caret line="26" column="36" lean-forward="false" selection-start-line="26" selection-start-column="36" selection-end-line="26" selection-end-column="36" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Index.java">
+    <entry file="file://$PROJECT_DIR$/src/CMMSemanticAnalysis.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="704">
-          <caret line="82" column="48" lean-forward="true" selection-start-line="82" selection-start-column="48" selection-end-line="82" selection-end-column="48" />
+        <state relative-caret-position="31">
+          <caret line="940" column="37" lean-forward="true" selection-start-line="940" selection-start-column="37" selection-end-line="940" selection-end-column="37" />
           <folding>
-            <element signature="e#3136#3137#0" expanded="true" />
-            <element signature="e#3182#3183#0" expanded="true" />
-            <element signature="e#3518#3519#0" expanded="true" />
-            <element signature="e#3557#3558#0" expanded="true" />
+            <element signature="docComment;class#CMMSemanticAnalysis#0" expanded="false" />
+            <element signature="method#setUserInput#0;class#CMMSemanticAnalysis#0" expanded="false" />
+            <element signature="method#forAssign#0;class#CMMSemanticAnalysis#0" expanded="false" />
+            <element signature="method#forFor#0;class#CMMSemanticAnalysis#0" expanded="false" />
+            <element signature="method#forIf#0;class#CMMSemanticAnalysis#0" expanded="false" />
+            <element signature="method#forWhile#0;class#CMMSemanticAnalysis#0" expanded="false" />
+            <element signature="e#32664#32706#0" expanded="false" />
+            <element signature="method#forCondition#0;class#CMMSemanticAnalysis#0" expanded="false" />
           </folding>
         </state>
       </provider>

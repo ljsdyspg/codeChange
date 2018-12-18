@@ -7,7 +7,7 @@ import java.math.BigDecimal;
  *
  * @author Leeham
  */
-public class CMMSemanticAnalysis {
+public class CMMSemanticAnalysis extends Thread{
     /* 语义分析时的符号表 */
     private SymbolTable table = new SymbolTable();
     /* 语法分析得到的抽象语法树 */
@@ -955,8 +955,13 @@ public class CMMSemanticAnalysis {
                 return String.valueOf(e1 - e2);
             else if (content.equals(Token.TIMES))
                 return String.valueOf(e1 * e2);
-            else
+            else if (e2 != 0){
                 return String.valueOf(e1 / e2);
+            }else{
+                error("除数不能为0!",root.getLineNum());
+                return null;
+            }
+
         } else {
             double e1 = Double.parseDouble(results[0]);
             double e2 = Double.parseDouble(results[1]);

@@ -21,6 +21,6 @@ while(bool_val ==true) {
 integer_val = a + b - c * d / e;
 //非法标识符
 int _wrong,6wrong;
-//非法整数、实数
+///非法整数、实数
 int a = 009;
 double b = 00.009;
