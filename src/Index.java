@@ -1,5 +1,3 @@
-import sun.java2d.cmm.kcms.CMM;
-
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
@@ -15,11 +13,11 @@ public class Index extends JFrame{
     private File codeFile;
 
     //词法分析
-    private CMMLexer lexer = new CMMLexer();
+    private Lexer lexer = new Lexer();
     //语法分析
-    private static CMMParser parser;
+    private static Parser parser;
     //语义分析
-    private static CMMSemanticAnalysis cmmSemanticAnalysis;
+    private static Semantic semantic;
 
     private JSplitPane splitPane;
     private JSplitPane lsplitPane;
@@ -35,6 +33,8 @@ public class Index extends JFrame{
     private JMenuItem item_open_file;
     private JMenuItem item_exit;
     private JMenuItem runProj;
+    private JMenuItem saveFile;
+    private JMenuItem aboutMe;
 
     private JTextArea textarea;
     private JTextArea parse_log;
@@ -50,7 +50,7 @@ public class Index extends JFrame{
 
     public Index(){
 
-        this.setTitle("CMM解释器");
+        this.setTitle("简陋CMM解释器");
         this.setSize(1280,720);
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
@@ -93,35 +93,48 @@ public class Index extends JFrame{
         menuBar = new JMenuBar();
 
         menu_file = new JMenu("文件");
-        item_new_file = new JMenuItem("新建");
         item_open_file = new JMenuItem("打开");
-        item_open_file.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                showOpenDialog(textarea,textarea);
+        item_open_file.addActionListener(e -> showOpenDialog(textarea,textarea));
+        saveFile = new JMenuItem("保存");
+        saveFile.addActionListener(e -> {
+            if (codeFile == null){
+                JOptionPane.showMessageDialog(
+                        Index.this,
+                        "没有选中打开文件，无法保存",
+                        "错误提示",
+                        JOptionPane.WARNING_MESSAGE);
+            }else{
+                try {
+                    FileWriter fw = new FileWriter(codeFile);
+                    fw.write(textarea.getText());
+                    fw.close();
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
             }
         });
         item_exit = new JMenuItem("退出");
-        item_exit.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.exit(0);
-            }
-        });
-        menu_file.add(item_new_file);
+        item_exit.addActionListener(e -> System.exit(0));
+
         menu_file.add(item_open_file);
+        menu_file.add(saveFile);
         menu_file.add(item_exit);
 
         menu_edit = new JMenu("运行");
         runProj = new JMenuItem("运行");
-        runProj.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                start();
-            }
-        });
+        runProj.addActionListener(e -> start());
         menu_edit.add(runProj);
+
         menu_about = new JMenu("关于");
+        aboutMe = new JMenuItem("关于");
+        aboutMe.addActionListener(e -> {
+            JOptionPane.showMessageDialog(
+                    Index.this,
+                    "作者：珞珈山第一蛇皮怪",
+                    "关于",
+                    JOptionPane.INFORMATION_MESSAGE);
+        });
+        menu_about.add(aboutMe);
 
         menuBar.add(menu_file);
         menuBar.add(menu_edit);
@@ -157,24 +170,20 @@ public class Index extends JFrame{
     }
 
     private void start() {
-        lexer = new CMMLexer();
-        try {
-            lexer.execute(getFile(codeFile));
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+        lexer = new Lexer();
+        lexer.execute(textarea.getText());
         lexer_log.setText("词法分析：\n");
         lexer_log.append(String.valueOf(lexer.getResult()));
 
-        parser = new CMMParser(lexer.getTokens());
+        parser = new Parser(lexer.getTokens());
         parser.execute();
         parse_log.setText("语法分析：\n");
         parse_log.append(String.valueOf(parser.getResult()));
 
-        cmmSemanticAnalysis = new CMMSemanticAnalysis(parser.getRoot());
-        cmmSemanticAnalysis.run();
+        semantic = new Semantic(parser.getRoot());
+        semantic.run();
         console.setText("语义分析：\n");
-        console.append(String.valueOf(cmmSemanticAnalysis.getResult()));
+        console.append(String.valueOf(semantic.getResult()));
     }
 
 

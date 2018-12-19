@@ -8,12 +8,12 @@ public class Token {
     public static final String LT = "<";
     public static final String GT = ">";
     public static final String EQUAL = "==";
-    public static final String NEQUAL = "<>";//不等
+    public static final String NEQUAL = "<>";
     public static final String ASSIGN = "=";
 
     /* 保留字 */
     public static final String READ = "read";
-    public static final String WRITE = "write";
+    public static final String PRINT = "print";
     public static final String WHILE = "while";
     public static final String IF = "if";
     public static final String FOR = "for";

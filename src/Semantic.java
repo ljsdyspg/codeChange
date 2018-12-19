@@ -7,7 +7,7 @@ import java.math.BigDecimal;
  *
  * @author Leeham
  */
-public class CMMSemanticAnalysis extends Thread{
+public class Semantic extends Thread{
     /* 语义分析时的符号表 */
     private SymbolTable table = new SymbolTable();
     /* 语法分析得到的抽象语法树 */
@@ -24,7 +24,7 @@ public class CMMSemanticAnalysis extends Thread{
     //语义分析结果
     private StringBuilder result = new StringBuilder();
 
-    public CMMSemanticAnalysis(TreeNode root) {
+    public Semantic(TreeNode root) {
         this.root = root;
     }
 
@@ -88,18 +88,6 @@ public class CMMSemanticAnalysis extends Thread{
             result.append(errorInfo);
             result.append("程序中共有"+errorNum+"个语义错误"+"\n");
         }
-       /* CompilerFrame.problemArea.append("\n");
-        CompilerFrame.problemArea.append("**********语义分析结果**********\n");
-        if (errorNum != 0) {
-            CompilerFrame.problemArea.append(errorInfo);
-            CompilerFrame.problemArea.append("该程序中共有" + errorNum + "个语义错误！\n");
-            CompilerFrame.proAndConPanel.setSelectedIndex(1);
-            JOptionPane.showMessageDialog(new JPanel(), "程序进行语义分析时发现错误，请修改！",
-                    "语义分析", JOptionPane.ERROR_MESSAGE);
-        } else {
-            CompilerFrame.problemArea.append("该程序中共有" + errorNum + "个语义错误！\n");
-            CompilerFrame.proAndConPanel.setSelectedIndex(0);
-        }*/
     }
 
 
@@ -136,7 +124,7 @@ public class CMMSemanticAnalysis extends Thread{
                 table.update(level);
             } else if (content.equals(Token.READ)) {
                 forRead(currentNode.getChildAt(0));
-            } else if (content.equals(Token.WRITE)) {
+            } else if (content.equals(Token.PRINT)) {
                 forWrite(currentNode.getChildAt(0));
             }
         }

@@ -6,7 +6,7 @@ import java.util.ArrayList;
  * @author Leeham
  *
  */
-public class CMMParser {
+public class Parser {
 
     // 词法分析得到的tokens向量
     private ArrayList<Token> tokens;
@@ -33,13 +33,13 @@ public class CMMParser {
     // 语法分析结果
     private StringBuilder result = new StringBuilder();
 
-    public CMMParser(ArrayList<Token> tokens) {
+    public Parser(ArrayList<Token> tokens) {
         this.tokens = tokens;
         if (tokens.size() != 0)
             currentToken = tokens.get(0);
     }
 
-    /*  parser = new CMMParser(lexer.getTokens());
+    /*  parser = new Parser(lexer.getTokens());
         parser.setIndex(0);
         parser.setErrorInfo("");
         parser.setErrorNum(0);
@@ -176,8 +176,8 @@ public class CMMParser {
         }
         // write语句
         else if (currentToken != null
-                && currentToken.getContent().equals(Token.WRITE)) {
-            TreeNode writeNode = new TreeNode("关键字", Token.WRITE,
+                && currentToken.getContent().equals(Token.PRINT)) {
+            TreeNode writeNode = new TreeNode("关键字", Token.PRINT,
                     currentToken.getLine());
             writeNode.add(write_stm());
             tempNode = writeNode;

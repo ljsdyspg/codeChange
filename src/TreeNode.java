@@ -1,12 +1,8 @@
 import javax.swing.tree.DefaultMutableTreeNode;
 
 public class TreeNode extends DefaultMutableTreeNode {
-	private static final long serialVersionUID = 123232323L;
-	/* 当前结点类型 */
 	private String nodeKind;
-	/* 当前结点内容*/
 	private String content;
-	/* 当前结点所在行号*/
 	private int lineNum;
 
 	public TreeNode() {
