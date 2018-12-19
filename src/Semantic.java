@@ -39,6 +39,22 @@ public class Semantic extends Thread{
     }
 
 
+    public String getErrorInfo() {
+        return errorInfo;
+    }
+
+    public void setErrorInfo(String errorInfo) {
+        this.errorInfo = errorInfo;
+    }
+
+    public int getErrorNum() {
+        return errorNum;
+    }
+
+    public void setErrorNum(int errorNum) {
+        this.errorNum = errorNum;
+    }
+
     private static boolean matchInteger(String input) {
         if (input.matches("^-?\\d+$") && !input.matches("^-?0{1,}\\d+$"))
             return true;
@@ -47,33 +63,12 @@ public class Semantic extends Thread{
     }
 
 
-    private static boolean matchReal(String input) {
+    private static boolean matchDouble(String input) {
         if (input.matches("^(-?\\d+)(\\.\\d+)+$")
                 && !input.matches("^(-?0{2,}+)(\\.\\d+)+$"))
             return true;
         else
             return false;
-    }
-
-
-    public synchronized void setUserInput(String userInput) {
-        this.userInput = userInput;
-        notify();//这个去掉
-    }
-
-
-    public synchronized String readInput() {
-        String result = null;
-        try {
-            while (userInput == null) {
-                wait();//这个去掉
-            }
-        } catch (InterruptedException ie) {
-            ie.printStackTrace();
-        }
-        result = userInput;
-        userInput = null;
-        return result;
     }
 
 
@@ -102,37 +97,29 @@ public class Semantic extends Thread{
             } else if (content.equals(Token.ASSIGN)) {
                 forAssign(currentNode);
             } else if (content.equals(Token.FOR)) {
-                // 进入for循环语句，改变作用域
                 level++;
                 forFor(currentNode);
-                // 退出for循环语句，改变作用域并更新符号表
                 level--;
                 table.update(level);
             } else if (content.equals(Token.IF)) {
-                // 进入if语句，改变作用域
                 level++;
                 forIf(currentNode);
-                // 退出if语句，改变作用域并更新符号表
                 level--;
                 table.update(level);
             } else if (content.equals(Token.WHILE)) {
-                // 进入while语句，改变作用域
                 level++;
                 forWhile(currentNode);
-                // 退出while语句，改变作用域并更新符号表
                 level--;
                 table.update(level);
-            } else if (content.equals(Token.READ)) {
-                forRead(currentNode.getChildAt(0));
             } else if (content.equals(Token.PRINT)) {
-                forWrite(currentNode.getChildAt(0));
+                forPrint(currentNode.getChildAt(0));
             }
         }
     }
 
 
     private void forDeclare(TreeNode root) {
-        // 结点显示的内容,即声明变量的类型int real bool string
+        // 结点显示的内容,即声明变量的类型int double bool string
         String content = root.getContent();
         int index = 0;
         while (index < root.getChildCount()) {
@@ -153,9 +140,9 @@ public class Semantic extends Thread{
                         if (content.equals(Token.INT)) { // 声明int型变量
                             if (matchInteger(value)) {
                                 element.setIntValue(value);
-                                element.setRealValue(String.valueOf(Double
+                                element.setDoubleValue(String.valueOf(Double
                                         .parseDouble(value)));
-                            } else if (matchReal(value)) {
+                            } else if (matchDouble(value)) {
                                 String error = "不能将浮点数赋值给整型变量";
                                 error(error, valueNode.getLineNum());
                             } else if (value.equals("true")
@@ -167,28 +154,16 @@ public class Semantic extends Thread{
                                 error(error, valueNode.getLineNum());
                             } else if (valueNode.getNodeKind().equals("标识符")) {
                                 if (checkID(valueNode, level)) {
-                                    if (table.getAllLevel(
-                                            valueNode.getContent(), level)
-                                            .getKind().equals(Token.INT)) {
-                                        element.setIntValue(table.getAllLevel(
-                                                valueNode.getContent(), level)
-                                                .getIntValue());
-                                        element.setRealValue(table.getAllLevel(
-                                                valueNode.getContent(), level)
-                                                .getRealValue());
-                                    } else if (table.getAllLevel(
-                                            valueNode.getContent(), level)
-                                            .getKind().equals(Token.DOUBLE)) {
+                                    if (table.getAllLevel(valueNode.getContent(), level).getKind().equals(Token.INT)) {
+                                        element.setIntValue(table.getAllLevel(valueNode.getContent(), level).getIntValue());
+                                        element.setDoubleValue(table.getAllLevel(valueNode.getContent(), level).getDoubleValue());
+                                    } else if (table.getAllLevel(valueNode.getContent(), level).getKind().equals(Token.DOUBLE)) {
                                         String error = "不能将浮点型变量赋值给整型变量";
                                         error(error, valueNode.getLineNum());
-                                    } else if (table.getAllLevel(
-                                            valueNode.getContent(), level)
-                                            .getKind().equals(Token.BOOL)) {
+                                    } else if (table.getAllLevel(valueNode.getContent(), level).getKind().equals(Token.BOOL)) {
                                         String error = "不能将布尔型变量赋值给整型变量";
                                         error(error, valueNode.getLineNum());
-                                    } else if (table.getAllLevel(
-                                            valueNode.getContent(), level)
-                                            .getKind().equals(Token.STRING)) {
+                                    } else if (table.getAllLevel(valueNode.getContent(), level).getKind().equals(Token.STRING)) {
                                         String error = "不能将字符串变量赋值给整型变量";
                                         error(error, valueNode.getLineNum());
                                     }
@@ -203,10 +178,10 @@ public class Semantic extends Thread{
                                 if (result != null) {
                                     if (matchInteger(result)) {
                                         element.setIntValue(result);
-                                        element.setRealValue(String
+                                        element.setDoubleValue(String
                                                 .valueOf(Double
                                                         .parseDouble(result)));
-                                    } else if (matchReal(result)) {
+                                    } else if (matchDouble(result)) {
                                         String error = "不能将浮点数赋值给整型变量";
                                         error(error, valueNode.getLineNum());
                                         return;
@@ -217,14 +192,10 @@ public class Semantic extends Thread{
                                     return;
                                 }
                             }
-                        } else if (content.equals(Token.DOUBLE)) { // 声明real型变量
-                            if (matchInteger(value)) {
-                                element.setRealValue(String.valueOf(Double
-                                        .parseDouble(value)));
-                            } else if (matchReal(value)) {
-                                element.setRealValue(value);
-                            } else if (value.equals("true")
-                                    || value.equals("false")) {
+                        } else if (content.equals(Token.DOUBLE)) { // 声明double型变量
+                            if (matchInteger(value)) { element.setDoubleValue(String.valueOf(Double.parseDouble(value)));
+                            } else if (matchDouble(value)) { element.setDoubleValue(value);
+                            } else if (value.equals("true") || value.equals("false")) {
                                 String error = "不能将" + value + "赋值给浮点型变量";
                                 error(error, valueNode.getLineNum());
                             } else if (valueNode.getNodeKind().equals("字符串")) {
@@ -232,24 +203,13 @@ public class Semantic extends Thread{
                                 error(error, valueNode.getLineNum());
                             } else if (valueNode.getNodeKind().equals("标识符")) {
                                 if (checkID(valueNode, level)) {
-                                    if (table.getAllLevel(
-                                            valueNode.getContent(), level)
-                                            .getKind().equals(Token.INT)
-                                            || table.getAllLevel(
-                                            valueNode.getContent(),
-                                            level).getKind().equals(
-                                            Token.DOUBLE)) {
-                                        element.setRealValue(table.getAllLevel(
-                                                valueNode.getContent(), level)
-                                                .getRealValue());
-                                    } else if (table.getAllLevel(
-                                            valueNode.getContent(), level)
-                                            .getKind().equals(Token.BOOL)) {
+                                    if (table.getAllLevel(valueNode.getContent(), level).getKind().equals(Token.INT)
+                                            || table.getAllLevel(valueNode.getContent(), level).getKind().equals(Token.DOUBLE)) {
+                                        element.setDoubleValue(table.getAllLevel(valueNode.getContent(), level).getDoubleValue());
+                                    } else if (table.getAllLevel(valueNode.getContent(), level).getKind().equals(Token.BOOL)) {
                                         String error = "不能将布尔型变量赋值给浮点型变量";
                                         error(error, valueNode.getLineNum());
-                                    } else if (table.getAllLevel(
-                                            valueNode.getContent(), level)
-                                            .getKind().equals(Token.STRING)) {
+                                    } else if (table.getAllLevel(valueNode.getContent(), level).getKind().equals(Token.STRING)) {
                                         String error = "不能将字符串变量赋值给浮点型变量";
                                         error(error, valueNode.getLineNum());
                                     }
@@ -262,12 +222,9 @@ public class Semantic extends Thread{
                                     || value.equals(Token.DIVIDE)) {
                                 String result = forExpression(valueNode);
                                 if (result != null) {
-                                    if (matchInteger(result)) {
-                                        element.setRealValue(String
-                                                .valueOf(Double
-                                                        .parseDouble(result)));
-                                    } else if (matchReal(result)) {
-                                        element.setRealValue(result);
+                                    if (matchInteger(result)) { element.setDoubleValue(String.valueOf(Double.parseDouble(result)));
+                                    } else if (matchDouble(result)) {
+                                        element.setDoubleValue(result);
                                     }
                                 } else {
                                     return;
@@ -277,35 +234,26 @@ public class Semantic extends Thread{
                             if (matchInteger(value)) {
                                 String error = "不能将整数赋值给字符串型变量";
                                 error(error, valueNode.getLineNum());
-                            } else if (matchReal(value)) {
+                            } else if (matchDouble(value)) {
                                 String error = "不能将浮点数赋值给字符串型变量";
                                 error(error, valueNode.getLineNum());
-                            } else if (value.equals("true")
-                                    || value.equals("false")) {
+                            } else if (value.equals("true") || value.equals("false")) {
                                 String error = "不能将" + value + "赋值给字符串型变量";
                                 error(error, valueNode.getLineNum());
                             } else if (valueNode.getNodeKind().equals("字符串")) {
                                 element.setStringValue(value);
                             } else if (valueNode.getNodeKind().equals("标识符")) {
                                 if (checkID(valueNode, level)) {
-                                    if (table.getAllLevel(
-                                            valueNode.getContent(), level)
-                                            .getKind().equals(Token.INT)) {
+                                    if (table.getAllLevel(valueNode.getContent(), level).getKind().equals(Token.INT)) {
                                         String error = "不能将整数赋值给字符串型变量";
                                         error(error, valueNode.getLineNum());
-                                    } else if (table.getAllLevel(
-                                            valueNode.getContent(), level)
-                                            .getKind().equals(Token.DOUBLE)) {
+                                    } else if (table.getAllLevel(valueNode.getContent(), level).getKind().equals(Token.DOUBLE)) {
                                         String error = "不能将浮点数赋值给字符串型变量";
                                         error(error, valueNode.getLineNum());
-                                    } else if (table.getAllLevel(
-                                            valueNode.getContent(), level)
-                                            .getKind().equals(Token.BOOL)) {
+                                    } else if (table.getAllLevel(valueNode.getContent(), level).getKind().equals(Token.BOOL)) {
                                         String error = "不能将布尔型变量赋值给字符串型变量";
                                         error(error, valueNode.getLineNum());
-                                    } else if (table.getAllLevel(
-                                            valueNode.getContent(), level)
-                                            .getKind().equals(Token.STRING)) {
+                                    } else if (table.getAllLevel(valueNode.getContent(), level).getKind().equals(Token.STRING)) {
                                         element.setStringValue(value);
                                     }
                                 } else {
@@ -326,7 +274,7 @@ public class Semantic extends Thread{
                                     element.setStringValue("false");
                                 else
                                     element.setStringValue("true");
-                            } else if (matchReal(value)) {
+                            } else if (matchDouble(value)) {
                                 String error = "不能将浮点数赋值给布尔型变量";
                                 error(error, valueNode.getLineNum());
                             } else if (value.equals("true")
@@ -337,35 +285,18 @@ public class Semantic extends Thread{
                                 error(error, valueNode.getLineNum());
                             } else if (valueNode.getNodeKind().equals("标识符")) {
                                 if (checkID(valueNode, level)) {
-                                    if (table.getAllLevel(
-                                            valueNode.getContent(), level)
-                                            .getKind().equals(Token.INT)) {
-                                        int i = Integer.parseInt(table
-                                                .getAllLevel(
-                                                        valueNode.getContent(),
-                                                        level).getIntValue());
+                                    if (table.getAllLevel(valueNode.getContent(), level).getKind().equals(Token.INT)) {
+                                        int i = Integer.parseInt(table.getAllLevel(valueNode.getContent(), level).getIntValue());
                                         if (i <= 0)
                                             element.setStringValue("false");
                                         else
                                             element.setStringValue("true");
-                                    } else if (table.getAllLevel(
-                                            valueNode.getContent(), level)
-                                            .getKind().equals(Token.DOUBLE)) {
+                                    } else if (table.getAllLevel(valueNode.getContent(), level).getKind().equals(Token.DOUBLE)) {
                                         String error = "不能将浮点型变量赋值给布尔型变量";
                                         error(error, valueNode.getLineNum());
-                                    } else if (table.getAllLevel(
-                                            valueNode.getContent(), level)
-                                            .getKind().equals(Token.BOOL)) {
-                                        element
-                                                .setStringValue(table
-                                                        .getAllLevel(
-                                                                valueNode
-                                                                        .getContent(),
-                                                                level)
-                                                        .getStringValue());
-                                    } else if (table.getAllLevel(
-                                            valueNode.getContent(), level)
-                                            .getKind().equals(Token.STRING)) {
+                                    } else if (table.getAllLevel(valueNode.getContent(), level).getKind().equals(Token.BOOL)) {
+                                        element.setStringValue(table.getAllLevel(valueNode.getContent(), level).getStringValue());
+                                    } else if (table.getAllLevel(valueNode.getContent(), level).getKind().equals(Token.STRING)) {
                                         String error = "不能将字符串变量赋值给布尔型变量";
                                         error(error, valueNode.getLineNum());
                                     }
@@ -388,8 +319,7 @@ public class Semantic extends Thread{
                     }
                     table.add(element);
                 } else { // 声明数组
-                    SymbolTableElement element = new SymbolTableElement(temp
-                            .getContent(), content, temp.getLineNum(), level);
+                    SymbolTableElement element = new SymbolTableElement(temp.getContent(), content, temp.getLineNum(), level);
                     String sizeValue = temp.getChildAt(0).getContent();
                     if (matchInteger(sizeValue)) {
                         int i = Integer.parseInt(sizeValue);
@@ -400,11 +330,9 @@ public class Semantic extends Thread{
                         }
                     } else if (temp.getChildAt(0).getNodeKind().equals("标识符")) {
                         if (checkID(root, level)) {
-                            SymbolTableElement tempElement = table.getAllLevel(
-                                    root.getContent(), level);
+                            SymbolTableElement tempElement = table.getAllLevel(root.getContent(), level);
                             if (tempElement.getKind().equals(Token.INT)) {
-                                int i = Integer.parseInt(tempElement
-                                        .getIntValue());
+                                int i = Integer.parseInt(tempElement.getIntValue());
                                 if (i < 1) {
                                     String error = "数组大小必须大于零";
                                     error(error, root.getLineNum());
@@ -493,7 +421,7 @@ public class Semantic extends Thread{
             node2Kind = "int";
         } else if (node2Kind.equals("实数")) { // 实数
             value = node2Value;
-            node2Kind = "real";
+            node2Kind = "double";
         } else if (node2Kind.equals("字符串")) { // 字符串
             value = node2Value;
             node2Kind = "string";
@@ -514,7 +442,7 @@ public class Semantic extends Thread{
                 if (temp.getKind().equals(Token.INT)) {
                     value = temp.getIntValue();
                 } else if (temp.getKind().equals(Token.DOUBLE)) {
-                    value = temp.getRealValue();
+                    value = temp.getDoubleValue();
                 } else if (temp.getKind().equals(Token.BOOL)
                         || temp.getKind().equals(Token.STRING)) {
                     value = temp.getStringValue();
@@ -531,8 +459,8 @@ public class Semantic extends Thread{
             if (result != null) {
                 if (matchInteger(result))
                     node2Kind = "int";
-                else if (matchReal(result))
-                    node2Kind = "real";
+                else if (matchDouble(result))
+                    node2Kind = "double";
                 value = result;
             } else {
                 return;
@@ -548,7 +476,7 @@ public class Semantic extends Thread{
         if (node1Kind.equals(Token.INT)) {
             if (node2Kind.equals(Token.INT)) {
                 table.getAllLevel(node1Value, level).setIntValue(value);
-                table.getAllLevel(node1Value, level).setRealValue(
+                table.getAllLevel(node1Value, level).setDoubleValue(
                         String.valueOf(Double.parseDouble(value)));
             } else if (node2Kind.equals(Token.DOUBLE)) {
                 String error = "不能将浮点数赋值给整型变量";
@@ -565,10 +493,10 @@ public class Semantic extends Thread{
             }
         } else if (node1Kind.equals(Token.DOUBLE)) {
             if (node2Kind.equals(Token.INT)) {
-                table.getAllLevel(node1Value, level).setRealValue(
+                table.getAllLevel(node1Value, level).setDoubleValue(
                         String.valueOf(Double.parseDouble(value)));
             } else if (node2Kind.equals(Token.DOUBLE)) {
-                table.getAllLevel(node1Value, level).setRealValue(value);
+                table.getAllLevel(node1Value, level).setDoubleValue(value);
             } else if (node2Kind.equals(Token.BOOL)) {
                 String error = "不能将布尔值赋值给浮点型变量";
                 error(error, node1.getLineNum());
@@ -673,79 +601,15 @@ public class Semantic extends Thread{
         }
     }
 
-
-    private void forRead(TreeNode root) {
-//		CompilerFrame.consoleArea.setText("");
-// CompilerFrame.setControlArea(Color.GREEN, true);
-        // 要读取的变量的名字
-        String idName = root.getContent();
-        // 查找变量
-        SymbolTableElement element = table.getAllLevel(idName, level);
-        // 判断变量是否已经声明
-        if (element != null) {
-            if (root.getChildCount() != 0) {
-                String s = forArray(root.getChildAt(0), element
-                        .getArrayElementsNum());
-                if (s != null) {
-                    idName += "@" + s;
-                } else {
-                    return;
-                }
-            }
-            String value = readInput();
-            if (element.getKind().equals(Token.INT)) {
-                if (matchInteger(value)) {
-                    table.getAllLevel(idName, level).setIntValue(value);
-                    table.getAllLevel(idName, level).setRealValue(
-                            String.valueOf(Double.parseDouble(value)));
-                } else { // 报错
-                    String error = "不能将\"" + value + "\"赋值给变量" + idName;
-                    JOptionPane.showMessageDialog(new JPanel(), error, "输入错误",
-                            JOptionPane.ERROR_MESSAGE);
-                }
-            } else if (element.getKind().equals(Token.DOUBLE)) {
-                if (matchReal(value)) {
-                    table.getAllLevel(idName, level).setRealValue(value);
-                } else if (matchInteger(value)) {
-                    table.getAllLevel(idName, level).setRealValue(
-                            String.valueOf(Double.parseDouble(value)));
-                } else { // 报错
-                    String error = "不能将\"" + value + "\"赋值给变量" + idName;
-                    JOptionPane.showMessageDialog(new JPanel(), error, "输入错误",
-                            JOptionPane.ERROR_MESSAGE);
-                }
-            } else if (element.getKind().equals(Token.BOOL)) {
-                if (value.equals("true")) {
-                    table.getAllLevel(idName, level).setStringValue("true");
-                } else if (value.equals("false")) {
-                    table.getAllLevel(idName, level).setStringValue("false");
-                } else { // 报错
-                    String error = "不能将\"" + value + "\"赋值给变量" + idName;
-                    JOptionPane.showMessageDialog(new JPanel(), error, "输入错误",
-                            JOptionPane.ERROR_MESSAGE);
-                }
-            } else if (element.getKind().equals(Token.STRING)) {
-                table.getAllLevel(idName, level).setStringValue(value);
-            }
-        } else { // 报错
-            String error = "变量" + idName + "在使用前未声明";
-            error(error, root.getLineNum());
-        }
-    }
-
-
-    private void forWrite(TreeNode root) {
-    //    CompilerFrame.setControlArea(Color.BLACK, false);
+    private void forPrint(TreeNode root) {
         // 结点显示的内容
         String content = root.getContent();
         // 结点的类型
         String kind = root.getNodeKind();
         if (kind.equals("整数") || kind.equals("实数")) { // 常量
-    //        CompilerFrame.consoleArea.setText(CompilerFrame.consoleArea.getText()+ content + "\n");
             System.out.println(content);
             result.append(content+"\n");
         } else if (kind.equals("字符串")) { // 字符串
-            // CompilerFrame.consoleArea.setText(CompilerFrame.consoleArea.getText()+ content + "\n");
             System.out.println(content);
             result.append(content+"\n");
         } else if (kind.equals("标识符")) { // 标识符
@@ -760,17 +624,14 @@ public class Semantic extends Thread{
                 }
                 SymbolTableElement temp = table.getAllLevel(content, level);
                 if (temp.getKind().equals(Token.INT)) {
-                    //CompilerFrame.consoleArea.setText(CompilerFrame.consoleArea.getText()+ temp.getIntValue() + "\n");
                     System.out.println(temp.getIntValue() + "\n");
                     result.append(temp.getIntValue() + "\n");
                 } else if (temp.getKind().equals(Token.DOUBLE)) {
-                    System.out.println(temp.getRealValue() + "\n");
-                    result.append(temp.getRealValue() + "\n");
-                 //   CompilerFrame.consoleArea.setText(CompilerFrame.consoleArea.getText() + temp.getRealValue() + "\n");
+                    System.out.println(temp.getDoubleValue() + "\n");
+                    result.append(temp.getDoubleValue() + "\n");
                 } else {
                     System.out.println(temp.getStringValue() + "\n");
                     result.append(temp.getStringValue() + "\n");
-                  //  CompilerFrame.consoleArea.setText(CompilerFrame.consoleArea.getText()+ temp.getStringValue() + "\n");
                 }
             } else {
                 return;
@@ -778,10 +639,9 @@ public class Semantic extends Thread{
         } else if (content.equals(Token.PLUS)
                 || content.equals(Token.MINUS)
                 || content.equals(Token.TIMES)
-                || content.equals(Token.DIVIDE)) { // 表达式
+                || content.equals(Token.DIVIDE)) {
             String value = forExpression(root);
             if (value != null) {
-                //CompilerFrame.consoleArea.setText(CompilerFrame.consoleArea.getText()+ value + "\n");
                 System.out.println(value);
                 result.append(value+"\n");
             }
@@ -845,7 +705,7 @@ public class Semantic extends Thread{
                         if (temp.getKind().equals(Token.INT)) {
                             results[i] = temp.getIntValue();
                         } else {
-                            results[i] = temp.getRealValue();
+                            results[i] = temp.getDoubleValue();
                         }
                     } else {
                         return false;
@@ -886,37 +746,28 @@ public class Semantic extends Thread{
 
     private String forExpression(TreeNode root) {
         boolean isInt = true;
-        // + -
         String content = root.getContent();
-        // 存放两个运算对象的值
         String[] results = new String[2];
         for (int i = 0; i < root.getChildCount(); i++) {
             TreeNode tempNode = root.getChildAt(i);
             String kind = tempNode.getNodeKind();
             String tempContent = tempNode.getContent();
-            if (kind.equals("整数")) { // 整数
+            if (kind.equals("整数")) {
                 results[i] = tempContent;
-            } else if (kind.equals("实数")) { // 实数
+            } else if (kind.equals("实数")) {
                 results[i] = tempContent;
                 isInt = false;
-            } else if (kind.equals("标识符")) { // 标识符
+            } else if (kind.equals("标识符")) {
                 if (checkID(tempNode, level)) {
                     if (tempNode.getChildCount() != 0) {
-                        String s = forArray(tempNode.getChildAt(0), table
-                                .getAllLevel(tempContent, level)
-                                .getArrayElementsNum());
-                        if (s != null)
+                        String s = forArray(tempNode.getChildAt(0), table.getAllLevel(tempContent, level).getArrayElementsNum());
+                        if (s != null){
+                            results[i]=s;
+                            System.out.println("!!!!!"+s);
                             tempContent += "@" + s;
+                        }
                         else
                             return null;
-                    }
-                    SymbolTableElement temp = table.getAllLevel(tempNode
-                            .getContent(), level);
-                    if (temp.getKind().equals(Token.INT)) {
-                        results[i] = temp.getIntValue();
-                    } else if (temp.getKind().equals(Token.DOUBLE)) {
-                        results[i] = temp.getRealValue();
-                        isInt = false;
                     }
                 } else {
                     return null;
@@ -927,8 +778,7 @@ public class Semantic extends Thread{
                     || tempContent.equals(Token.DIVIDE)) { // 表达式
                 String result = forExpression(root.getChildAt(i));
                 if (result != null) {
-                    results[i] = result;
-                    if (matchReal(result))
+                    if (matchDouble(result))
                         isInt = false;
                 } else
                     return null;
@@ -1058,7 +908,7 @@ public class Semantic extends Thread{
             }
             SymbolTableElement temp = table.getAllLevel(idName, level);
             // 变量未初始化
-            if (temp.getIntValue().equals("") && temp.getRealValue().equals("")
+            if (temp.getIntValue().equals("") && temp.getDoubleValue().equals("")
                     && temp.getStringValue().equals("")) {
                 String error = "变量" + idName + "在使用前未初始化";
                 error(error, root.getLineNum());
@@ -1068,21 +918,4 @@ public class Semantic extends Thread{
             }
         }
     }
-
-    public String getErrorInfo() {
-        return errorInfo;
-    }
-
-    public void setErrorInfo(String errorInfo) {
-        this.errorInfo = errorInfo;
-    }
-
-    public int getErrorNum() {
-        return errorNum;
-    }
-
-    public void setErrorNum(int errorNum) {
-        this.errorNum = errorNum;
-    }
-
 }

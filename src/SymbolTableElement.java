@@ -10,7 +10,7 @@ public class SymbolTableElement {
 	/* 元素的整形数值 */
 	private String intValue;
 	/* 元素的浮点型数值 */
-	private String realValue;
+	private String doubleValue;
 	/* 元素的字符串值 */
 	private String stringValue;
 	/* 表明元素是否为数组,0表示不是,否则表示数组的大小 */
@@ -22,7 +22,7 @@ public class SymbolTableElement {
 		this.lineNum = lineNum;
 		this.level = level;
 		this.intValue = "";
-		this.realValue = "";
+		this.doubleValue = "";
 		this.stringValue = "";
 		this.arrayElementsNum = 0;
 	}
@@ -67,12 +67,12 @@ public class SymbolTableElement {
 		this.intValue = intValue;
 	}
 
-	public String getRealValue() {
-		return realValue;
+	public String getDoubleValue() {
+		return doubleValue;
 	}
 
-	public void setRealValue(String realValue) {
-		this.realValue = realValue;
+	public void setDoubleValue(String doubleValue) {
+		this.doubleValue = doubleValue;
 	}
 
 	public String getStringValue() {

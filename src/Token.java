@@ -12,7 +12,6 @@ public class Token {
     public static final String ASSIGN = "=";
 
     /* 保留字 */
-    public static final String READ = "read";
     public static final String PRINT = "print";
     public static final String WHILE = "while";
     public static final String IF = "if";

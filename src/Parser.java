@@ -8,9 +8,9 @@ import java.util.ArrayList;
  */
 public class Parser {
 
-    // 词法分析得到的tokens向量
+    // 获取词法分析的tokens
     private ArrayList<Token> tokens;
-    // 标记当前token的游标
+    // 标记tokens
     private int index = 0;
     // 存放当前token的值
     private Token currentToken = null;
@@ -18,6 +18,12 @@ public class Parser {
     private int errorNum = 0;
     // 错误信息
     private String errorInfo = "";
+    // 标志是否存在语法错误
+    private boolean hasError = false;
+
+    public boolean getHasError() {
+        return hasError;
+    }
 
     public TreeNode getRoot() {
         return root;
@@ -38,19 +44,6 @@ public class Parser {
         if (tokens.size() != 0)
             currentToken = tokens.get(0);
     }
-
-    /*  parser = new Parser(lexer.getTokens());
-        parser.setIndex(0);
-        parser.setErrorInfo("");
-        parser.setErrorNum(0);
-        TreeNode root = parser.execute();
-        parse_log.setText("语法分析：\n");
-        parse_log.append(parser.getErrorInfo()+"\n");
-        parse_log.append(root.getChildCount()+" ");
-        parse_log.append(root.getContent()+"\n");
-        showParseResult(root);*/
-
-
 
     public int getErrorNum() {
         return errorNum;
@@ -85,25 +78,21 @@ public class Parser {
         for (; index < tokens.size();) {
             root.add(statement());
         }
-        result.append(getErrorInfo()+"\n");
         result.append(root.getChildCount()+" ");
         result.append(root.getContent()+"\n");
         show(root);
+        if (!errorInfo.isEmpty()) hasError = true;
+        result.append(getErrorInfo()+"\n");
     }
     private void show(TreeNode temp){
         TreeNode child;
         int count = temp.getChildCount();
-        //System.out.println(temp.getContent());
-        //System.out.println(count);
         for (int i = 0; i < temp.getChildCount(); i++) {
             child = temp.getChildAt(i);
-            //System.out.print(child.getChildCount());
             result.append(String.valueOf(child.getChildCount()));
             for (int j = 0; j < child.getLevel(); j++) {
-                //System.out.print("   |");
                 result.append("  |");
             }
-            //System.out.println(child.getContent());
             result.append(child.getContent()+"\n");
             show(child);
         }
@@ -123,7 +112,7 @@ public class Parser {
 
 
     private void error(String error) {
-        String line = "    ERROR:第 ";
+        String line = "错误 :第 ";
         Token previous = tokens.get(index - 1);
         if (currentToken != null
                 && currentToken.getLine() == previous.getLine()) {
@@ -166,27 +155,18 @@ public class Parser {
                 && currentToken.getContent().equals(Token.WHILE)) {
             tempNode = while_stm();
         }
-        // read语句
-        else if (currentToken != null
-                && currentToken.getContent().equals(Token.READ)) {
-            TreeNode readNode = new TreeNode("关键字", Token.READ, currentToken
-                    .getLine());
-            readNode.add(read_stm());
-            tempNode = readNode;
-        }
-        // write语句
+        // print语句
         else if (currentToken != null
                 && currentToken.getContent().equals(Token.PRINT)) {
-            TreeNode writeNode = new TreeNode("关键字", Token.PRINT,
+            TreeNode printNode = new TreeNode("关键字", Token.PRINT,
                     currentToken.getLine());
-            writeNode.add(write_stm());
-            tempNode = writeNode;
+            printNode.add(print_stm());
+            tempNode = printNode;
         }
         // 出错处理
         else {
-            String error = " 语句以错误的token开始" + "\n";
-            error(error);
-            tempNode = new TreeNode(Token.ERROR + "语句以错误的token开始");
+            error("Token有误" + "\n");
+            tempNode = new TreeNode(Token.ERROR + "Token有误");
             nextToken();
         }
         return tempNode;
@@ -199,42 +179,42 @@ public class Parser {
         // if函数返回结点的根结点
         TreeNode forNode = new TreeNode("关键字", "for", currentToken.getLine());
         nextToken();
-        // 匹配左括号(
+        // 匹配左括号
         if (currentToken != null
                 && currentToken.getContent().equals(Token.LPAREN)) {
             nextToken();
         } else { // 报错
-            String error = " for循环语句缺少左括号\"(\"" + "\n";
+            String error = "左括号缺失！\"(\"" + "\n";
             error(error);
-            forNode.add(new TreeNode(Token.ERROR + "for循环语句缺少左括号\"(\""));
+            forNode.add(new TreeNode(Token.ERROR + "左括号缺失！\"(\""));
         }
         // initialization
         TreeNode initializationNode = new TreeNode("initialization",
                 "Initialization", currentToken.getLine());
         initializationNode.add(assign_stm(true));
         forNode.add(initializationNode);
-        // 匹配分号;
+        // 匹配分号
         if (currentToken != null
                 && currentToken.getContent().equals(Token.SEMICOLON)) {
             nextToken();
         } else {
-            String error = " for循环语句缺少分号\";\"" + "\n";
+            String error = "分号缺失！\";\"" + "\n";
             error(error);
-            return new TreeNode(Token.ERROR + "for循环语句缺少分号\";\"");
+            return new TreeNode(Token.ERROR + "分号缺失！\";\"");
         }
         // condition
         TreeNode conditionNode = new TreeNode("condition", "Condition",
                 currentToken.getLine());
         conditionNode.add(condition());
         forNode.add(conditionNode);
-        // 匹配分号;
+        // 匹配分号
         if (currentToken != null
                 && currentToken.getContent().equals(Token.SEMICOLON)) {
             nextToken();
         } else {
-            String error = " for循环语句缺少分号\";\"" + "\n";
+            String error = "分号缺失！\";\"" + "\n";
             error(error);
-            return new TreeNode(Token.ERROR + "for循环语句缺少分号\";\"");
+            return new TreeNode(Token.ERROR + "分号缺失！\";\"");
         }
         // change
         TreeNode changeNode = new TreeNode("change", "Change", currentToken
@@ -245,12 +225,12 @@ public class Parser {
         if (currentToken != null
                 && currentToken.getContent().equals(Token.RPAREN)) {
             nextToken();
-        } else { // 报错
-            String error = " if条件语句缺少右括号\")\"" + "\n";
+        } else {
+            String error = " 右括号缺失\")\"" + "\n";
             error(error);
-            forNode.add(new TreeNode(Token.ERROR + "if条件语句缺少右括号\")\""));
+            forNode.add(new TreeNode(Token.ERROR + "右括号缺失\")\""));
         }
-        // 匹配左大括号{
+        // 匹配左大括号
         if (currentToken != null
                 && currentToken.getContent().equals(Token.LBRACE)) {
             nextToken();
@@ -274,14 +254,14 @@ public class Parser {
                     break;
                 }
             }
-            // 匹配右大括号}
+            // 匹配右大括号
             if (currentToken != null
                     && currentToken.getContent().equals(Token.RBRACE)) {
                 nextToken();
             } else { // 报错
-                String error = " if条件语句缺少右大括号\"}\"" + "\n";
+                String error = "右大括号缺失\"}\"" + "\n";
                 error(error);
-                forNode.add(new TreeNode(Token.ERROR + "if条件语句缺少右大括号\"}\""));
+                forNode.add(new TreeNode(Token.ERROR + "右大括号缺失\"}\""));
             }
         } else {
             statementNode.add(statement());
@@ -298,30 +278,28 @@ public class Parser {
         // if函数返回结点的根结点
         TreeNode ifNode = new TreeNode("关键字", "if", currentToken.getLine());
         nextToken();
-        // 匹配左括号(
+        // 匹配左括号
         if (currentToken != null
                 && currentToken.getContent().equals(Token.LPAREN)) {
             nextToken();
-        } else { // 报错
-            String error = " if条件语句缺少左括号\"(\"" + "\n";
+        } else {
+            String error = "左括号缺失\"(\"" + "\n";
             error(error);
-            ifNode.add(new TreeNode(Token.ERROR + "if条件语句缺少左括号\"(\""));
+            ifNode.add(new TreeNode(Token.ERROR + "左括号缺失\"(\""));
         }
         // condition
         TreeNode conditionNode = new TreeNode("condition", "Condition",
                 currentToken.getLine());
         ifNode.add(conditionNode);
         conditionNode.add(condition());
-        // 匹配右括号)
-        if (currentToken != null
-                && currentToken.getContent().equals(Token.RPAREN)) {
-            nextToken();
+        // 匹配右括号
+        if (currentToken != null && currentToken.getContent().equals(Token.RPAREN)) { nextToken();
         } else { // 报错
-            String error = " if条件语句缺少右括号\")\"" + "\n";
+            String error = " 右括号缺失\")\"" + "\n";
+            ifNode.add(new TreeNode(Token.ERROR + "右括号缺失\")\""));
             error(error);
-            ifNode.add(new TreeNode(Token.ERROR + "if条件语句缺少右括号\")\""));
         }
-        // 匹配左大括号{
+        // 匹配左大括号
         if (currentToken != null
                 && currentToken.getContent().equals(Token.LBRACE)) {
             nextToken();
@@ -329,8 +307,7 @@ public class Parser {
             hasIfBrace = false;
         }
         // statement
-        TreeNode statementNode = new TreeNode("statement", "Statements",
-                currentToken.getLine());
+        TreeNode statementNode = new TreeNode("statement", "Statements", currentToken.getLine());
         ifNode.add(statementNode);
         if (hasIfBrace) {
             while (currentToken != null) {
@@ -345,14 +322,14 @@ public class Parser {
                     break;
                 }
             }
-            // 匹配右大括号}
+            // 匹配右大括号
             if (currentToken != null
                     && currentToken.getContent().equals(Token.RBRACE)) {
                 nextToken();
             } else { // 报错
-                String error = " if条件语句缺少右大括号\"}\"" + "\n";
+                String error = "右大括号缺失\"}\"" + "\n";
                 error(error);
-                ifNode.add(new TreeNode(Token.ERROR + "if条件语句缺少右大括号\"}\""));
+                ifNode.add(new TreeNode(Token.ERROR + "右大括号缺失\"}\""));
             }
         } else {
             if (currentToken != null)
@@ -364,7 +341,7 @@ public class Parser {
                     .getLine());
             ifNode.add(elseNode);
             nextToken();
-            // 匹配左大括号{
+            // 匹配左大括号
             if (currentToken.getContent().equals(Token.LBRACE)) {
                 nextToken();
             } else {
@@ -381,10 +358,10 @@ public class Parser {
                         && currentToken.getContent().equals(Token.RBRACE)) {
                     nextToken();
                 } else { // 报错
-                    String error = " else语句缺少右大括号\"}\"" + "\n";
+                    String error = "右大括号缺失\"}\"" + "\n";
                     error(error);
                     elseNode.add(new TreeNode(Token.ERROR
-                            + "else语句缺少右大括号\"}\""));
+                            + "右大括号缺失\"}\""));
                 }
             } else {
                 if (currentToken != null)
@@ -402,30 +379,30 @@ public class Parser {
         TreeNode whileNode = new TreeNode("关键字", Token.WHILE, currentToken
                 .getLine());
         nextToken();
-        // 匹配左括号(
+        // 匹配左括号
         if (currentToken != null
                 && currentToken.getContent().equals(Token.LPAREN)) {
             nextToken();
         } else { // 报错
-            String error = " while循环缺少左括号\"(\"" + "\n";
+            String error = "左括号缺失\"(\"" + "\n";
             error(error);
-            whileNode.add(new TreeNode(Token.ERROR + "while循环缺少左括号\"(\""));
+            whileNode.add(new TreeNode(Token.ERROR + "左括号缺失\"(\""));
         }
         // condition
         TreeNode conditionNode = new TreeNode("condition", "Condition",
                 currentToken.getLine());
         whileNode.add(conditionNode);
         conditionNode.add(condition());
-        // 匹配右括号)
+        // 匹配右括号
         if (currentToken != null
                 && currentToken.getContent().equals(Token.RPAREN)) {
             nextToken();
         } else { // 报错
-            String error = " while循环缺少右括号\")\"" + "\n";
+            String error = "右括号缺失\")\"" + "\n";
             error(error);
-            whileNode.add(new TreeNode(Token.ERROR + "while循环缺少右括号\")\""));
+            whileNode.add(new TreeNode(Token.ERROR + "右括号缺失\")\""));
         }
-        // 匹配左大括号{
+        // 匹配左大括号
         if (currentToken != null
                 && currentToken.getContent().equals(Token.LBRACE)) {
             nextToken();
@@ -455,9 +432,9 @@ public class Parser {
                     && currentToken.getContent().equals(Token.RBRACE)) {
                 nextToken();
             } else { // 报错
-                String error = " while循环缺少右大括号\"}\"" + "\n";
+                String error = " 右大括号缺失\"}\"" + "\n";
                 error(error);
-                whileNode.add(new TreeNode(Token.ERROR + "while循环缺少右大括号\"}\""));
+                whileNode.add(new TreeNode(Token.ERROR + "右大括号缺失\"}\""));
             }
         } else {
             if(currentToken != null)
@@ -466,8 +443,7 @@ public class Parser {
         return whileNode;
     }
 
-
-    private final TreeNode read_stm() {
+    private final TreeNode print_stm() {
         // 保存要返回的结点
         TreeNode tempNode = null;
         nextToken();
@@ -476,60 +452,9 @@ public class Parser {
                 && currentToken.getContent().equals(Token.LPAREN)) {
             nextToken();
         } else {
-            String error = " read语句缺少左括号\"(\"" + "\n";
+            String error = " print语句缺少左括号\"(\"" + "\n";
             error(error);
-            return new TreeNode(Token.ERROR + "read语句缺少左括号\"(\"");
-        }
-        // 匹配标识符
-        if (currentToken != null && currentToken.getKind().equals("标识符")) {
-            tempNode = new TreeNode("标识符", currentToken.getContent(),
-                    currentToken.getLine());
-            nextToken();
-            // 判断是否是为数组赋值
-            if (currentToken != null
-                    && currentToken.getContent().equals(Token.LBRACKET)) {
-                tempNode.add(array());
-            }
-        } else {
-            String error = " read语句左括号后不是标识符" + "\n";
-            error(error);
-            nextToken();
-            return new TreeNode(Token.ERROR + "read语句左括号后不是标识符");
-        }
-        // 匹配右括号)
-        if (currentToken != null
-                && currentToken.getContent().equals(Token.RPAREN)) {
-            nextToken();
-        } else {
-            String error = " read语句缺少右括号\")\"" + "\n";
-            error(error);
-            return new TreeNode(Token.ERROR + "read语句缺少右括号\")\"");
-        }
-        // 匹配分号;
-        if (currentToken != null
-                && currentToken.getContent().equals(Token.SEMICOLON)) {
-            nextToken();
-        } else {
-            String error = " read语句缺少分号\";\"" + "\n";
-            error(error);
-            return new TreeNode(Token.ERROR + "read语句缺少分号\";\"");
-        }
-        return tempNode;
-    }
-
-
-    private final TreeNode write_stm() {
-        // 保存要返回的结点
-        TreeNode tempNode = null;
-        nextToken();
-        // 匹配左括号(
-        if (currentToken != null
-                && currentToken.getContent().equals(Token.LPAREN)) {
-            nextToken();
-        } else {
-            String error = " write语句缺少左括号\"(\"" + "\n";
-            error(error);
-            return new TreeNode(Token.ERROR + "write语句缺少左括号\"(\"");
+            return new TreeNode(Token.ERROR + "print语句缺少左括号\"(\"");
         }
         // 调用expression函数匹配表达式
         tempNode = expression();
@@ -538,18 +463,18 @@ public class Parser {
                 && currentToken.getContent().equals(Token.RPAREN)) {
             nextToken();
         } else {
-            String error = " write语句缺少右括号\")\"" + "\n";
+            String error = " print语句缺少右括号\")\"" + "\n";
             error(error);
-            return new TreeNode(Token.ERROR + "write语句缺少右括号\")\"");
+            return new TreeNode(Token.ERROR + "print语句缺少右括号\")\"");
         }
         // 匹配分号;
         if (currentToken != null
                 && currentToken.getContent().equals(Token.SEMICOLON)) {
             nextToken();
         } else {
-            String error = " write语句缺少分号\";\"" + "\n";
+            String error = " print语句缺少分号\";\"" + "\n";
             error(error);
-            return new TreeNode(Token.ERROR + "write语句缺少分号\";\"");
+            return new TreeNode(Token.ERROR + "print语句缺少分号\";\"");
         }
         return tempNode;
     }
@@ -643,9 +568,7 @@ public class Parser {
                     && !currentToken.getContent().equals(Token.COMMA)) {
                 String error = " 声明语句出错,标识符后出现不正确的token" + "\n";
                 error(error);
-                root
-                        .add(new TreeNode(Token.ERROR
-                                + "声明语句出错,标识符后出现不正确的token"));
+                root.add(new TreeNode(Token.ERROR + "声明语句出错,标识符后出现不正确的token"));
                 nextToken();
             }
         } else { // 报错
@@ -655,10 +578,8 @@ public class Parser {
             nextToken();
         }
         // 匹配赋值符号=
-        if (currentToken != null
-                && currentToken.getContent().equals(Token.ASSIGN)) {
-            TreeNode assignNode = new TreeNode("分隔符", Token.ASSIGN,
-                    currentToken.getLine());
+        if (currentToken != null && currentToken.getContent().equals(Token.ASSIGN)) {
+            TreeNode assignNode = new TreeNode("分隔符", Token.ASSIGN, currentToken.getLine());
             root.add(assignNode);
             nextToken();
             assignNode.add(condition());
@@ -691,10 +612,8 @@ public class Parser {
         TreeNode tempNode = term();
 
         // 如果下一个token为加号或减号
-        while (currentToken != null
-                && (currentToken.getContent().equals(Token.PLUS) || currentToken
-                .getContent().equals(Token.MINUS))) {
-            // add_op
+        while (currentToken != null && (currentToken.getContent().equals(Token.PLUS)
+                || currentToken.getContent().equals(Token.MINUS))) {
             TreeNode addNode = add_op();
             addNode.add(tempNode);
             tempNode = addNode;
@@ -707,7 +626,6 @@ public class Parser {
     private final TreeNode term() {
         // 记录factor生成的结点
         TreeNode tempNode = factor();
-
         // 如果下一个token为乘号或除号
         while (currentToken != null
                 && (currentToken.getContent().equals(Token.TIMES) || currentToken

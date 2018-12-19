@@ -84,7 +84,7 @@ public class Index extends JFrame{
         rsplitPane.setDividerLocation(this.getHeight()/2);
 
         splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
-        splitPane.setDividerLocation(4*this.getWidth()/5);
+        splitPane.setDividerLocation(3*this.getWidth()/5);
         splitPane.setLeftComponent(lsplitPane);
         splitPane.setRightComponent(rsplitPane);
 
@@ -175,15 +175,23 @@ public class Index extends JFrame{
         lexer_log.setText("词法分析：\n");
         lexer_log.append(String.valueOf(lexer.getResult()));
 
-        parser = new Parser(lexer.getTokens());
-        parser.execute();
-        parse_log.setText("语法分析：\n");
-        parse_log.append(String.valueOf(parser.getResult()));
-
-        semantic = new Semantic(parser.getRoot());
-        semantic.run();
-        console.setText("语义分析：\n");
-        console.append(String.valueOf(semantic.getResult()));
+        if (lexer.getHasError()){
+            parse_log.setText("词法分析存在错误！");
+            console.setText("词法分析存在错误!");
+        }else {
+            parser = new Parser(lexer.getTokens());
+            parser.execute();
+            parse_log.setText("语法分析：\n");
+            parse_log.append(String.valueOf(parser.getResult()));
+            if (parser.getHasError()){
+                console.setText("语法分析存在错误！");
+            }else {
+                semantic = new Semantic(parser.getRoot());
+                semantic.run();
+                console.setText("语义分析：\n");
+                console.append(String.valueOf(semantic.getResult()));
+            }
+        }
     }
 
 
